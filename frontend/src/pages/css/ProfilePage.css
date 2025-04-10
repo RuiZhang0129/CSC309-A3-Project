@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
+
+.profile-container {
+    background-color: #fff0f6;
+    background-repeat: repeat;
+    min-height: 100vh;
+    padding: 2rem;
+    font-family: 'Comic Neue', cursive;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.profile-bow {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 60px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.profile-title {
+    font-size: 2rem;
+    color: #f06292;
+    margin-bottom: 2rem;
+    animation: bounce 2s infinite;
+}
+
+.profile-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    width: 100%;
+    text-align: left;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.profile-card p {
+    margin-bottom: 0.7rem;
+    font-size: 1rem;
+    color: #444;
+}
+
+.profile-avatar {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1.5rem;
+}
+
+.edit-button {
+    display: block;
+    width: 200px;
+    margin: 0 auto;
+    margin-top: 1.5rem;
+    background: linear-gradient(135deg, #f48fb1, #f06292);
+    color: white;
+    padding: 0.6rem 1.4rem;
+    border-radius: 999px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: transform 0.2s ease;
+    text-align: center;
+}
+
+.edit-button:hover {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, #ec407a, #d81b60);
+}
+
+.profile-loading {
+    font-size: 1.2rem;
+    color: #999;
+    padding-top: 3rem;
+}
+
+.back-to-content-btn {
+    display: block;
+    margin: 0 auto;
+    width: 200px;
+    background-color: #f48fb1;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.4rem;
+    border-radius: 999px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    font-family: 'Comic Neue', cursive;
+}
+
+.back-to-content-btn:hover {
+    background-color: #ec407a;
+}
+
+
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

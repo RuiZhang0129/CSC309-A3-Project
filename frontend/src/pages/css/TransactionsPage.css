@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
+
+.tx-container {
+    background-color: #fff0f6;
+    background-repeat: repeat;
+    min-height: 100vh;
+    padding: 2rem;
+    font-family: "Comic Neue", cursive;
+    position: relative;
+}
+
+.tx-bow {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 60px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.tx-title {
+    text-align: center;
+    color: #f06292;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+    animation: bounce 2s infinite;
+}
+
+.tx-controls {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-bottom: 20px;
+}
+
+.tx-controls select {
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    border: 1px solid #f8bbd0;
+    font-size: 1rem;
+    outline: none;
+    background: #ffffff;
+}
+
+.tx-card {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 1rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    animation: cardFade 0.5s ease-in-out;
+}
+
+.tx-card:hover {
+    transform: translateY(-4px);
+}
+
+.tx-pagination {
+    text-align: center;
+    margin-top: 2rem;
+}
+
+.tx-page-button {
+    background-color: #ffe6f0;
+    border: none;
+    border-radius: 999px;
+    padding: 0.5rem 1rem;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.tx-page-button:hover {
+    background-color: #f8bbd0;
+    transform: scale(1.05);
+}
+
+.tx-page-button.active {
+    background-color: #f06292;
+    color: white;
+}
+
+.back-to-content-btn {
+    margin-top: 2rem;
+    background-color: #f48fb1;
+    border: none;
+    padding: 0.6rem 1.4rem;
+    border-radius: 999px;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    font-family: 'Comic Neue', cursive;
+}
+
+.back-to-content-btn:hover {
+    background-color: #ec407a;
+}
+
+/* Animations */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes cardFade {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

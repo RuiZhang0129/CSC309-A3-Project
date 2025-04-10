@@ -1,0 +1,136 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
+
+.user-edit-container {
+    background-color: #fff0f6;
+    min-height: 100vh;
+    padding: 2rem;
+    font-family: "Comic Neue", cursive;
+    position: relative;
+    text-align: center;
+}
+
+.user-edit-bow {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 60px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.user-title {
+    font-size: 2rem;
+    color: #f06292;
+    margin-bottom: 2rem;
+    animation: bounce 2s infinite;
+}
+
+.user-card {
+    max-width: 500px;
+    margin: 0 auto;
+    background: white;
+    padding: 2rem;
+    border-radius: 1.2rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: left;
+}
+
+.user-card p {
+    margin-bottom: 1rem;
+    color: #444;
+}
+
+.user-card label {
+    display: block;
+    margin: 1rem 0;
+    font-weight: bold;
+    color: #d81b60;
+}
+
+.user-card select {
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    border: 1px solid #f8bbd0;
+    font-size: 1rem;
+    outline: none;
+    margin-top: 0.5rem;
+}
+
+.checkbox-green {
+    accent-color: #4caf50;
+    margin-right: 8px;
+}
+
+.checkbox-red {
+    accent-color: #e91e63;
+    margin-right: 8px;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #f48fb1, #f06292);
+    color: white;
+    border: none;
+    padding: 0.7rem 1.2rem;
+    border-radius: 999px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+}
+
+.back-to-content-btn {
+    margin-top: 2rem;
+    background-color: #f48fb1;
+    border: none;
+    padding: 0.6rem 1.4rem;
+    border-radius: 999px;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    font-family: 'Comic Neue', cursive;
+}
+
+.back-to-content-btn:hover {
+    background-color: #ec407a;
+}
+
+.form-message {
+    margin-top: 1rem;
+    font-weight: bold;
+    color: #6a1b9a;
+}
+
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}

@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
+
+.home-container {
+    background-color: #ffeef4;
+    min-height: 100vh;
+   
+    background-repeat: repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Comic Neue', cursive;
+    position: relative;
+    overflow: hidden;
+}
+
+.corner-bow {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 60px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.home-header {
+    text-align: center;
+    padding: 2rem;
+    background: white;
+    border-radius: 2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    max-width: 600px;
+}
+
+.home-header h1 {
+    color: #f06292;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.home-header p {
+    color: #cc0066;
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+}
+
+.hello-img {
+    width: 200px;
+    height: auto;
+    border-radius: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.pink-btn {
+    background-color: #f48fb1;
+    border: none;
+    padding: 0.6rem 1.4rem;
+    border-radius: 999px;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.pink-btn:hover {
+    background-color: #f06292;
+}
+
+
+.explore-button {
+    background-color: #ff80ab;
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.explore-button:hover {
+    background-color: #f06292;
+    transform: scale(1.05);
+}
+
+.explore-button:active {
+    transform: scale(0.95);
+}
+
+
+.bounce-ears {
+    animation: bounce 2s infinite;
+}
+
+.corner-deco {
+    position: absolute;
+    width: 120px; 
+    opacity: 0.95;
+    z-index: 1;
+    animation: floatAround 4s ease-in-out infinite;
+}
+
+
+.top-right {
+    top: 20px;
+    right: 20px;
+}
+
+.bottom-left {
+    bottom: 20px;
+    left: 20px;
+}
+
+
+@keyframes floatAround {
+    0%, 100% {
+        transform: translateY(0px) rotate(0deg);
+    }
+    50% {
+        transform: translateY(-8px) rotate(3deg);
+    }
+}
+
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+}

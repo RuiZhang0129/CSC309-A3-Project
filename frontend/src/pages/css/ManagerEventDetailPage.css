@@ -1,0 +1,176 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
+
+.manager-event-container {
+    background-color: #fff0f6;
+    min-height: 100vh;
+    padding: 2rem;
+    font-family: 'Comic Neue', cursive;
+    position: relative;
+}
+
+.manager-bow {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 60px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.manager-title {
+    font-size: 2rem;
+    text-align: center;
+    color: #f06292;
+    margin-bottom: 2rem;
+    animation: bounce 2s infinite;
+}
+
+.event-form {
+    max-width: 500px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 1.5rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.event-form label {
+    font-weight: bold;
+    color: #d81b60;
+    margin-bottom: 0.3rem;
+}
+
+.event-form input[type="text"],
+.event-form input[type="datetime-local"],
+.event-form input[type="number"] {
+    padding: 0.6rem 1rem;
+    border-radius: 999px;
+    border: 1px solid #f8bbd0;
+    font-size: 1rem;
+    outline: none;
+}
+
+.event-form input:focus {
+    border-color: #f06292;
+    box-shadow: 0 0 5px #ffb6c1;
+}
+
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+    margin-top: 1rem;
+}
+
+.btn-primary,
+.btn-danger,
+.btn-back {
+    border: none;
+    padding: 0.7rem 1rem;
+    font-size: 1rem;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: transform 0.2s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #f48fb1, #f06292);
+    color: white;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+}
+
+
+.btn-danger {
+    background-color: #ef7668;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #f15347;
+}
+
+.btn-back:hover {
+    transform: scale(1.05);
+}
+
+.form-message {
+    margin-top: 1rem;
+    font-weight: bold;
+    color: #6a1b9a;
+    animation: fadeIn 0.4s ease-in-out;
+    text-align: center;
+}
+
+.event-loading {
+    padding: 3rem;
+    text-align: center;
+    font-size: 1.2rem;
+    color: #999;
+}
+
+.checkbox-published {
+    width: 18px;
+    height: 18px;
+    accent-color: #4caf50;
+    /* ✅ Chrome, Edge, Firefox 等现代浏览器支持 */
+}
+
+.back-to-content-btn {
+    margin-top: 0.8rem;
+    background-color: #f48fb1;
+    border: none;
+    padding: 0.6rem 1.4rem;
+    border-radius: 999px;
+    font-weight: bold;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.back-to-content-btn:hover {
+    background-color: #ec407a;
+}
+
+/* Animations */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
