@@ -25,13 +25,22 @@ const app = express();
 app.use(express.json());
 
 
+
+
 const SECRET_KEY = "your_secret_key";
 const port = process.env.PORT || 3001;
 const cors = require('cors');
+require("dotenv").config();
 const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:3000"; 
 
+const allowedOrigins = [
+    'http://localhost:3000',
+    'https://your-frontend-service.up.railway.app'
+  ];
+
+  
 app.use(cors({
-    origin: FRONTEND_URL,
+    origin: FRONTEND_URL.trim(),
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true

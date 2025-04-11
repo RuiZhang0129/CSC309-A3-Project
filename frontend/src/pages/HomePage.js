@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import bowImage from "./image/bow.png";//[1] 58pic, “Bow drawn clipart transparent PNG HD, hand drawn wind cute cartoon bow, Childrens Day, six one, Bow PNG image for free download,” Pngtree, https://pngtree.com/freepng/hand-drawn-wind-cute-cartoon-bow_5469614.html (accessed Apr. 9, 2025). 
 import kuromiImage from "./image/kuromi.png";//[2] Gstatic.com, 2025. https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv21bk9OXFns-gOWsj6eA0m57S-pPptWnxoA&s (accessed Apr. 10, 2025).
 import image2 from "./image/image2.png";//[3] Douyin, "Image found via Douyin search", Douyin, https://p3-pc-sign.douyinpic.com/tos-cn-i-0813/8600ad027f2b47e48eb534a35ca95b78~tplv-dy-aweme-images:q75.webp?biz_tag=aweme_images&from=327834062&lk3s=138a59ce&s=PackSourceEnum_SEARCH&sc=image&se=false&x-expires=1746799200&x-signature=pEYbxnFIfFLndBlHnsA0pKcAESc%3D (accessed: Apr. 9, 2025).
-const BACKEND_URL = import.meta.env.VITE_BACKEND_URL || 'http://localhost:3001';
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3001';
 
 export default function HomePage() {
   const navigate = useNavigate();

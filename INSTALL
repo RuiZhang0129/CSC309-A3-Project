@@ -7,3 +7,5 @@
 
 
 backend node index.js 3001frontend npm start
+
+npm install dotenv
