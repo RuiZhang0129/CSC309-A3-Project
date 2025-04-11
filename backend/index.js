@@ -25,7 +25,7 @@ app.use(express.json());
 
 
 const SECRET_KEY = "your_secret_key";
-//const port = process.env.PORT || 3001;
+const port = process.env.PORT || 3001;
 const cors = require('cors');
 const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:3000"; 
 
