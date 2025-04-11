@@ -3802,7 +3802,7 @@ app.use((err, req, res, next) => {
 
 
 
-const path = require("path");
+//const path = require("path");
 
 // Serve static files from React build folder
 app.use(express.static(path.join(__dirname, '../frontend/build')));
