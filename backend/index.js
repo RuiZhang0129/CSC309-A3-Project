@@ -26,7 +26,7 @@ app.use(express.json());
 
 
 
-
+/*
 const SECRET_KEY = "your_secret_key";
 const port = process.env.PORT || 3001;
 const cors = require('cors');
@@ -45,6 +45,21 @@ app.use(cors({
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true
+}));
+*/
+
+require("dotenv").config();
+const cors = require("cors");
+const SECRET_KEY = "your_secret_key"; 
+const port = process.env.PORT || 3001;
+
+const FRONTEND_URL = process.env.FRONTEND_URL || "https://csc309-a3-project-production-823c.up.railway.app";
+
+app.use(cors({
+  origin: FRONTEND_URL, 
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true
 }));
 
 /*
