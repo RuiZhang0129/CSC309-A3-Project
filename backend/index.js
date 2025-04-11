@@ -7,6 +7,7 @@ function error(res, status, message) {
     res.status(status).json({ error: message });
 }
 
+
 'use strict';
 const express = require("express");
 const bcrypt = require("bcrypt");
@@ -3796,7 +3797,21 @@ app.use((req, res) => error(res, 404, "Not Found"));
 app.use((err, req, res, next) => {
     console.error(err);
     error(res, err.status || 500, err.message || "Internal Server Error");
+})
+
+
+
+
+const path = require("path");
+
+// Serve static files from React build folder
+app.use(express.static(path.join(__dirname, '../frontend/build')));
+
+// Catch-all route for React routing
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../frontend/build', 'index.html'));
 });
+
 
 const server = app.listen(port, () => {
     console.log(`Server running on port ${port}`);
@@ -3806,3 +3821,5 @@ server.on('error', (err) => {
     console.error(`Cannot start server: ${err.message}`);
     process.exit(1);
 });
+
+
