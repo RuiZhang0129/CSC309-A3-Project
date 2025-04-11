@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
+
+.redeemqr-container {
+    background-color: #fff0f6;
+    background-repeat: repeat;
+    min-height: 100vh;
+    padding: 2rem;
+    font-family: "Comic Neue", cursive;
+    position: relative;
+    text-align: center;
+}
+
+.redeemqr-bow {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 60px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.redeemqr-title {
+    font-size: 2rem;
+    color: #f06292;
+    margin-bottom: 2rem;
+    animation: bounce 2s infinite;
+}
+
+.redeemqr-error {
+    color: red;
+    font-weight: bold;
+    margin-top: 1rem;
+}
+
+.redeemqr-empty {
+    font-size: 1.2rem;
+    color: #999;
+}
+
+.redeemqr-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: center;
+    margin-top: 1rem;
+}
+
+.redeemqr-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 1.2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 240px;
+    transition: transform 0.2s ease;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.redeemqr-card:hover {
+    transform: translateY(-5px);
+}
+
+.redeemqr-card p {
+    margin: 0.5rem 0;
+    color: #444;
+}
+
+.back-to-content-btn {
+    margin-top: 2rem;
+    background-color: #f48fb1;
+    border: none;
+    padding: 0.6rem 1.4rem;
+    border-radius: 999px;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    font-family: 'Comic Neue', cursive;
+}
+
+.back-to-content-btn:hover {
+    background-color: #ec407a;
+}
+
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

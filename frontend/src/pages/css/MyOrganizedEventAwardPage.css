@@ -1,0 +1,154 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
+
+.award-container {
+    background-color: #fff0f6;
+    min-height: 100vh;
+    padding: 3rem 2rem;
+    font-family: 'Comic Neue', cursive;
+    position: relative;
+    text-align: center;
+}
+
+.award-bow {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 60px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.award-title {
+    font-size: 2rem;
+    color: #f06292;
+    margin-bottom: 2rem;
+    animation: bounce 2s infinite;
+}
+
+.award-form {
+    background: white;
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.award-form label {
+    font-weight: bold;
+    color: #d81b60;
+}
+
+.award-form input {
+    padding: 0.6rem 1rem;
+    border-radius: 999px;
+    border: 1px solid #f8bbd0;
+    font-size: 1rem;
+    outline: none;
+}
+
+.award-form input:focus {
+    border-color: #f06292;
+    box-shadow: 0 0 5px #f06292;
+}
+
+.button-group {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #f48fb1, #f06292);
+    border: none;
+    color: white;
+    font-weight: bold;
+    padding: 0.6rem 1.2rem;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.btn-primary:hover {
+    transform: scale(1.05);
+}
+
+.form-message {
+    color: #6a1b9a;
+    font-weight: bold;
+    text-align: center;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+.guest-title {
+    font-size: 1.3rem;
+    color: #ec407a;
+    margin-top: 3rem;
+}
+
+.guest-list {
+    list-style: circle;
+    max-width: 500px;
+    margin: 0 auto;
+    padding-left: 1.5rem;
+    text-align: left;
+    color: #444;
+}
+
+.back-to-content-btn {
+    display: block;
+    margin: 2rem auto 0 auto;
+    background-color: #f48fb1;
+    color: white;
+    border: none;
+    padding: 0.6rem 1.4rem;
+    border-radius: 999px;
+    font-size: 1rem;
+    cursor: pointer;
+    font-family: 'Comic Neue', cursive;
+}
+
+.back-to-content-btn:hover {
+    background-color: #ec407a;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
