@@ -31,7 +31,8 @@ const SECRET_KEY = "your_secret_key";
 const port = process.env.PORT || 3001;
 const cors = require('cors');
 require("dotenv").config();
-const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:3000"; 
+//const FRONTEND_URL = process.env.FRONTEND_URL || "http://localhost:3000"; 
+const FRONTEND_URL = process.env.FRONTEND_URL;
 
 const allowedOrigins = [
     'http://localhost:3000',
