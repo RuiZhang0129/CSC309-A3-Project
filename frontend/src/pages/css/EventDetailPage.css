@@ -1,0 +1,142 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
+
+.event-detail-container {
+    background-color: #fff0f6;
+    background-repeat: repeat;
+    min-height: 100vh;
+    padding: 2rem;
+    font-family: "Comic Neue", cursive;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    text-align: left;
+}
+
+.event-bow {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 60px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.event-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    max-width: 600px;
+    width: 100%;
+    animation: fadeIn 0.6s ease-in-out;
+}
+
+.event-title {
+    color: #f06292;
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+    text-align: center;
+    animation: bounce 2s infinite;
+}
+
+.event-button {
+    display: block;
+    margin-top: 1.5rem;
+    background: linear-gradient(135deg, #f48fb1, #f06292);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    font-size: 1.1rem;
+    border-radius: 999px;
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+    transition: transform 0.2s ease;
+}
+
+.event-button:hover {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, #ec407a, #d81b60);
+}
+
+.event-success {
+    margin-top: 1.2rem;
+    color: green;
+    font-weight: bold;
+    animation: pop 0.5s ease-out;
+    text-align: center;
+}
+
+.event-error,
+.event-loading {
+    text-align: center;
+    font-size: 1.2rem;
+    color: #888;
+    padding: 2rem;
+}
+
+.back-to-content-btn {
+    margin-top: 2rem;
+    background-color: #f48fb1;
+    border: none;
+    padding: 0.6rem 1.4rem;
+    border-radius: 999px;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    font-family: 'Comic Neue', cursive;
+}
+
+.back-to-content-btn:hover {
+    background-color: #ec407a;
+}
+
+/* 动画 */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes pop {
+    0% {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}

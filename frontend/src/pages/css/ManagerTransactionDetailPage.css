@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
+
+.tx-container {
+    background-color: #fff0f6;
+    min-height: 100vh;
+    padding: 2rem;
+    font-family: "Comic Neue", cursive;
+    position: relative;
+    text-align: center;
+}
+
+.tx-bow {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 60px;
+    animation: float 3s ease-in-out infinite;
+}
+
+.tx-title {
+    font-size: 2rem;
+    color: #f06292;
+    margin-bottom: 1.5rem;
+    animation: bounce 2s infinite;
+}
+
+.tx-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 1.2rem;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+    margin: 0 auto 2rem auto;
+    text-align: left;
+}
+
+.tx-card p {
+    margin: 0.5rem 0;
+}
+
+.tx-actions,
+.tx-adjust {
+    max-width: 500px;
+    margin: 0 auto 1.5rem auto;
+    text-align: left;
+}
+
+.tx-adjust label {
+    display: block;
+    font-weight: bold;
+    color: #d81b60;
+    margin-top: 0.5rem;
+}
+
+.tx-adjust input {
+    width: 100%;
+    padding: 0.6rem;
+    margin-bottom: 0.5rem;
+    border-radius: 999px;
+    border: 1px solid #f8bbd0;
+    outline: none;
+    font-size: 1rem;
+}
+
+.tx-adjust input:focus {
+    border-color: #f06292;
+    box-shadow: 0 0 5px #ffb6c1;
+}
+
+.tx-message {
+    color: #6a1b9a;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.btn-primary,
+.btn-warn,
+.btn-back {
+    border: none;
+    display: block;
+    margin: 1rem auto 0 auto;
+    padding: 0.7rem 1.2rem;
+    font-size: 1rem;
+    border-radius: 999px;
+    cursor: pointer;
+    font-weight: bold;
+    margin-top: 0.5rem;
+    transition: transform 0.2s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #f48fb1, #f06292);
+    color: white;
+    margin-top: 1rem;
+}
+
+.btn-warn {
+    background-color: #ffcc00;
+    color: #333;
+}
+
+.btn-back {
+    background-color: #e0e0e0;
+    color: #444;
+}
+
+.btn-primary:hover,
+.btn-warn:hover,
+.btn-back:hover {
+    transform: scale(1.05);
+}
+
+.tx-loading {
+    font-size: 1.2rem;
+    padding-top: 3rem;
+    color: #999;
+}
+
+/* 动画 */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

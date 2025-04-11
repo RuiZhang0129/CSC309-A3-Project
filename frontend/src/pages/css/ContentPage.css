@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Comic+Neue&display=swap');
+
+.content-container {
+    padding: 2rem;
+    background-color: #fff0f6;
+    min-height: 100vh;
+    font-family: 'Comic Neue', cursive;
+    text-align: center;
+}
+
+.content-title {
+    font-size: 2rem;
+    color: #ec407a;
+    margin-bottom: 2rem;
+}
+
+.button-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.menu-btn {
+    background-color: #f48fb1;
+    border: none;
+    padding: 0.8rem 1.6rem;
+    border-radius: 999px;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    min-width: 180px;
+}
+
+.menu-btn:hover {
+    background-color: #ec407a;
+    transform: scale(1.05);
+}
