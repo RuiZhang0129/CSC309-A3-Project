@@ -28,7 +28,7 @@ export default function ManagerUserEditPage() {
         setRole(data.role);
         setSuspicious(data.suspicious);
       })
-      .catch(() => setMessage(" Failed to get user information"));
+      .catch(() => setMessage("❌ Failed to get user information"));
   }, [id]);
 
   const handleUpdate = async () => {
@@ -47,9 +47,9 @@ export default function ManagerUserEditPage() {
 
     const data = await res.json();
     if (res.ok) {
-      setMessage(" User information updated");
+      setMessage("✅ User information updated");
     } else {
-      setMessage(` Update failed: ${data.error || 'Unknown error'}`);
+      setMessage(`❌ Update failed: ${data.error || 'Unknown error'}`);
     }
   };
 
@@ -58,7 +58,7 @@ export default function ManagerUserEditPage() {
   return (
     <div className="user-edit-container">
       <img src={bowImage} alt="bow" className="user-edit-bow" />
-      <h2 className="user-title"> Manage User - {user.utorid}</h2>
+      <h2 className="user-title">🛠️ Manage User - {user.utorid}</h2>
 
       <div className="user-card">
         <p><strong>Name:</strong> {user.name}</p>
@@ -71,7 +71,7 @@ export default function ManagerUserEditPage() {
             onChange={e => setVerified(e.target.checked)}
             className="checkbox-green"
           />
-           Verified
+          ✅ Verified
         </label>
 
         <label>
@@ -95,13 +95,13 @@ export default function ManagerUserEditPage() {
             onChange={e => setSuspicious(e.target.checked)}
             className="checkbox-red"
           />
-           Mark as Suspicious
+          ❗ Mark as Suspicious
         </label>
 
         <div className="button-group">
-          <button onClick={handleUpdate} className="btn-primary"> Save Changes</button>
+          <button onClick={handleUpdate} className="btn-primary">💾 Save Changes</button>
           <button onClick={() => navigate('/manager/users')} className="back-to-content-btn">
-             Back
+            🔙 Back
           </button>
         </div>
 

@@ -58,22 +58,22 @@ export default function EventDetailPage() {
     <div className="event-detail-container">
       <img src={bowImage} alt="bow" className="event-bow" />
       <div className="event-card">
-        <h2 className="event-title"> {event.name}</h2>
-        <p><strong> Location:</strong> {event.location}</p>
-        <p><strong> Start:</strong> {new Date(event.startTime).toLocaleString()}</p>
-        <p><strong> End:</strong> {new Date(event.endTime).toLocaleString()}</p>
-        <p><strong> Description:</strong> {event.description}</p>
-        <p><strong> Current number of guests:</strong> {event.numGuests}</p>
+        <h2 className="event-title">🎈 {event.name}</h2>
+        <p><strong>📍 Location:</strong> {event.location}</p>
+        <p><strong>🕒 Start:</strong> {new Date(event.startTime).toLocaleString()}</p>
+        <p><strong>🕕 End:</strong> {new Date(event.endTime).toLocaleString()}</p>
+        <p><strong>📖 Description:</strong> {event.description}</p>
+        <p><strong>👥 Current number of guests:</strong> {event.numGuests}</p>
 
         <button onClick={() => navigate('/events')} className="back-to-content-btn">
-           Back
+          🔙 Back
         </button>
 
         {rsvpSuccess ? (
-          <p className="event-success"> Successfully registered! We look forward to your participation </p>
+          <p className="event-success">✅ Successfully registered! We look forward to your participation 💕</p>
         ) : (
           <button className="event-button" onClick={handleRSVP}>
-             I want to join
+            💖 I want to join
           </button>
         )}
       </div>

@@ -18,7 +18,7 @@ export default function CashierCreateTransactionPage() {
   const handleCreate = async () => {
     const token = localStorage.getItem('token');
     if (!token) {
-      setMessage(' Please log in first');
+      setMessage('⚠️ Please log in first');
       return;
     }
 
@@ -46,23 +46,23 @@ export default function CashierCreateTransactionPage() {
 
       const data = await res.json();
       if (res.ok) {
-        setMessage(` Transaction created successfully. ID: ${data.id}`);
+        setMessage(`✅ Transaction created successfully. ID: ${data.id}`);
         setUtorid('');
         setSpent('');
         setRemark('');
       } else {
-        setMessage(` Failed to create: ${data.error || 'Unknown error'}`);
+        setMessage(`❌ Failed to create: ${data.error || 'Unknown error'}`);
       }
     } catch (err) {
       console.error(err);
-      setMessage(' Network error');
+      setMessage('❌ Network error');
     }
   };
 
   return (
     <div className="cashier-container">
       <img src={bowImage} alt="bow" className="cashier-bow" />
-      <h2 className="cashier-title"> Create Transaction </h2>
+      <h2 className="cashier-title">🎀 Create Transaction 🎀</h2>
 
       <div className="form-group">
         <label>User UTORid:</label>
@@ -87,10 +87,10 @@ export default function CashierCreateTransactionPage() {
         <input value={remark} onChange={e => setRemark(e.target.value)} className="form-input" />
       </div>
 
-      <button onClick={handleCreate} className="form-button"> Confirm Create</button>
+      <button onClick={handleCreate} className="form-button">🧾 Confirm Create</button>
 
       <button onClick={() => navigate('/content')} className="back-to-content-btn">
-         Back to Menu
+        🔙 Back to Menu
       </button>
 
       {message && <p className="form-message">{message}</p>}

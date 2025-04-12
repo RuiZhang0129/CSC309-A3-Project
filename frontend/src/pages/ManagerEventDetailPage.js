@@ -65,8 +65,8 @@ export default function ManagerEventDetailPage() {
       })
     });
     const data = await res.json();
-    if (res.ok) setMessage(" Update successful");
-    else setMessage(` Update failed: ${data.error || 'Unknown error'}`);
+    if (res.ok) setMessage("✅ Update successful");
+    else setMessage(`❌ Update failed: ${data.error || 'Unknown error'}`);
   };
 
   const handleDelete = async () => {
@@ -79,7 +79,7 @@ export default function ManagerEventDetailPage() {
     if (res.ok) {
       navigate('/manager/events');
     } else {
-      setMessage(' Delete failed');
+      setMessage('❌ Delete failed');
     }
   };
 
@@ -88,7 +88,7 @@ export default function ManagerEventDetailPage() {
   return (
     <div className="manager-event-container">
       <img src={bowImage} alt="bow" className="manager-bow" />
-      <h2 className="manager-title"> Event Details - {event.name}</h2>
+      <h2 className="manager-title">📄 Event Details - {event.name}</h2>
 
       <div className="event-form">
         <label>Name:</label>
@@ -119,9 +119,9 @@ export default function ManagerEventDetailPage() {
         />
 
         <div className="button-group">
-          <button onClick={handleUpdate} className="btn-primary"> Save Changes</button>
-          <button onClick={handleDelete} className="btn-danger"> Delete Event</button>
-          <button onClick={() => navigate('/manager/events')} className="back-to-content-btn"> Back</button>
+          <button onClick={handleUpdate} className="btn-primary">💾 Save Changes</button>
+          <button onClick={handleDelete} className="btn-danger">🗑️ Delete Event</button>
+          <button onClick={() => navigate('/manager/events')} className="back-to-content-btn">🔙 Back</button>
         </div>
 
         {message && <p className="form-message">{message}</p>}

@@ -41,7 +41,7 @@ export default function MyOrganizedEventListPage() {
 
   return (
     <div className="eventlist-container">
-      <h2 className="eventlist-title"> Events I'm Responsible For</h2>
+      <h2 className="eventlist-title">📋 Events I'm Responsible For</h2>
 
       <div className="eventlist-filters">
         <label>Sort by:</label>
@@ -57,10 +57,10 @@ export default function MyOrganizedEventListPage() {
         <div className="event-card-list">
           {events.map(event => (
             <div key={event.id} className="event-card">
-              <p><strong> Name:</strong> {event.name}</p>
-              <p><strong> Time:</strong> {new Date(event.startTime).toLocaleString()} - {new Date(event.endTime).toLocaleString()}</p>
-              <p><strong> Location:</strong> {event.location}</p>
-              <p><strong> Number of Guests:</strong> {event.numGuests ?? 0}</p>
+              <p><strong>📌 Name:</strong> {event.name}</p>
+              <p><strong>🕒 Time:</strong> {new Date(event.startTime).toLocaleString()} - {new Date(event.endTime).toLocaleString()}</p>
+              <p><strong>📍 Location:</strong> {event.location}</p>
+              <p><strong>👥 Number of Guests:</strong> {event.numGuests ?? 0}</p>
               <div>
                 <Link to={`/my-events/${event.id}`} className="event-link">View Details</Link>
                 <span> | </span>
@@ -89,7 +89,7 @@ export default function MyOrganizedEventListPage() {
       )}
 
       <button onClick={() => navigate('/content')} className="back-to-content-btn">
-         Back to Menu
+        🔙 Back to Menu
       </button>
     </div>
   );

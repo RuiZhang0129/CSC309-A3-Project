@@ -14,7 +14,7 @@ export default function CashierProcessRedemptionPage() {
   const handleProcess = async () => {
     const token = localStorage.getItem('token');
     if (!token) {
-      setMessage(' Please log in first');
+      setMessage('⚠️ Please log in first');
       return;
     }
 
@@ -36,21 +36,21 @@ export default function CashierProcessRedemptionPage() {
 
       const data = await res.json();
       if (res.ok) {
-        setMessage(` Successfully processed redemption request, transaction ID: ${data.id}`);
+        setMessage(`✅ Successfully processed redemption request, transaction ID: ${data.id}`);
         setTransactionId('');
       } else {
-        setMessage(` Processing failed: ${data.error || 'Unknown error'}`);
+        setMessage(`❌ Processing failed: ${data.error || 'Unknown error'}`);
       }
     } catch (err) {
       console.error(err);
-      setMessage(' Network error');
+      setMessage('❌ Network error');
     }
   };
 
   return (
     <div className="redeem-container">
       <img src={bowImage} alt="bow" className="redeem-bow" />
-      <h2 className="redeem-title"> Process Redemption Request</h2>
+      <h2 className="redeem-title">🎫 Process Redemption Request</h2>
 
       <div className="form-group">
         <label>Please enter redemption transaction ID:</label>
@@ -62,9 +62,9 @@ export default function CashierProcessRedemptionPage() {
         />
       </div>
 
-      <button onClick={handleProcess} className="form-button"> Confirm Process</button>
+      <button onClick={handleProcess} className="form-button">✨ Confirm Process</button>
       <button onClick={() => navigate('/content')} className="back-to-content-btn">
-         Back to Menu
+        🔙 Back to Menu
       </button>
 
       {message && <p className="form-message">{message}</p>}

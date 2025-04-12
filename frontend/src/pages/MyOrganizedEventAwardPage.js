@@ -32,13 +32,13 @@ export default function MyOrganizedEventAwardPage() {
 
   const handleAward = async (toAll = false) => {
     if (!toAll && !utorid) {
-      setMessage("Please enter UTORid");
+      setMessage("❗Please enter UTORid");
       return;
     }
 
     const parsedAmount = parseInt(amount);
     if (!Number.isInteger(parsedAmount) || parsedAmount <= 0) {
-      setMessage("Please enter a valid positive integer for points");
+      setMessage("❗Please enter a valid positive integer for points");
       return;
     }
 
@@ -60,18 +60,18 @@ export default function MyOrganizedEventAwardPage() {
 
     const data = await res.json();
     if (res.ok) {
-      setMessage(toAll ? " Points awarded to all guests" : ` Points awarded to ${utorid}`);
+      setMessage(toAll ? "✅ Points awarded to all guests" : `✅ Points awarded to ${utorid}`);
       setUtorid('');
       setAmount('');
     } else {
-      setMessage(` Award failed: ${data.error || 'Unknown error'}`);
+      setMessage(`❌ Award failed: ${data.error || 'Unknown error'}`);
     }
   };
 
   return (
     <div className="award-container">
       <img src={bowImage} alt="bow" className="award-bow" />
-      <h2 className="award-title"> Award Event Points</h2>
+      <h2 className="award-title">🎁 Award Event Points</h2>
 
       <div className="award-form">
         <label>Points to Award:</label>
@@ -90,14 +90,14 @@ export default function MyOrganizedEventAwardPage() {
         />
 
         <div className="button-group">
-          <button onClick={() => handleAward(false)} className="btn-primary"> Award This User</button>
-          <button onClick={() => handleAward(true)} className="btn-primary"> Award All Guests</button>
+          <button onClick={() => handleAward(false)} className="btn-primary">🎯 Award This User</button>
+          <button onClick={() => handleAward(true)} className="btn-primary">📢 Award All Guests</button>
         </div>
 
         {message && <p className="form-message">{message}</p>}
       </div>
 
-      <h3 className="guest-title"> Guest List:</h3>
+      <h3 className="guest-title">👥 Guest List:</h3>
       <ul className="guest-list">
         {guests.map((g, i) => (
           <li key={i}>
@@ -107,7 +107,7 @@ export default function MyOrganizedEventAwardPage() {
       </ul>
 
       <button onClick={() => navigate('/my-events')} className="back-to-content-btn">
-         Back
+        🔙 Back
       </button>
     </div>
   );

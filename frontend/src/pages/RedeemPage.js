@@ -14,7 +14,7 @@ export default function RedeemPage() {
   const handleRedeem = async () => {
     const token = localStorage.getItem('token');
     if (!token) {
-      setMessage(" Please log in first");
+      setMessage("⚠️ Please log in first");
       return;
     }
 
@@ -35,23 +35,23 @@ export default function RedeemPage() {
 
       const data = await res.json();
       if (res.ok) {
-        setMessage(` Redemption request submitted successfully! Transaction ID: ${data.id}`);
+        setMessage(`✅ Redemption request submitted successfully! Transaction ID: ${data.id}`);
         setAmount('');
         setRemark('');
       } else {
-        setMessage(` Failed: ${data.error}`);
+        setMessage(`❌ Failed: ${data.error}`);
       }
 
     } catch (err) {
       console.error("Redeem error:", err);
-      setMessage(" System error");
+      setMessage("❌ System error");
     }
   };
 
   return (
     <div className="redeem-container">
       <img src={bowImage} alt="bow" className="redeem-bow" />
-      <h2 className="redeem-title"> Points Redemption</h2>
+      <h2 className="redeem-title">🎁 Points Redemption</h2>
 
       <div className="form-group">
         <label>Amount to Redeem:</label>
@@ -73,12 +73,12 @@ export default function RedeemPage() {
         />
       </div>
 
-      <button onClick={handleRedeem} className="form-button"> Submit Redemption Request</button>
+      <button onClick={handleRedeem} className="form-button">✨ Submit Redemption Request</button>
 
       {message && <p className="form-message">{message}</p>}
 
       <button onClick={() => navigate('/content')} className="back-to-content-btn">
-         Back to Menu
+        🔙 Back to Menu
       </button>
     </div>
   );

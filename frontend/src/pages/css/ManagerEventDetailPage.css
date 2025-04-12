@@ -118,6 +118,7 @@
     width: 18px;
     height: 18px;
     accent-color: #4caf50;
+    /* ✅ Chrome, Edge, Firefox 等现代浏览器支持 */
 }
 
 .back-to-content-btn {

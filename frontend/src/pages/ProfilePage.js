@@ -24,7 +24,7 @@ export default function ProfilePage() {
   return (
     <div className="profile-container">
       <img src={bowImage} alt="bow" className="profile-bow" />
-      <h2 className="profile-title"> My Profile</h2>
+      <h2 className="profile-title">👤 My Profile</h2>
 
       <div className="profile-card">
         {user.avatarUrl && (
@@ -45,10 +45,10 @@ export default function ProfilePage() {
         <p><strong>Registered on:</strong> {new Date(user.createdAt).toLocaleDateString()}</p>
         <p><strong>Last login:</strong> {user.lastLogin ? new Date(user.lastLogin).toLocaleString() : "Never logged in"}</p>
 
-        <Link to="/edit-profile" className="edit-button"> Edit My Profile</Link>
+        <Link to="/edit-profile" className="edit-button">✏️ Edit My Profile</Link>
 
         <button onClick={() => navigate('/content')} className="back-to-content-btn">
-           Back to Menu
+          🔙 Back to Menu
         </button>
       </div>
     </div>

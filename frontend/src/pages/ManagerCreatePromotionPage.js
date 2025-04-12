@@ -20,10 +20,10 @@ export default function ManagerCreatePromotionPage() {
 
   const handleCreate = async () => {
     const token = localStorage.getItem('token');
-    if (!token) return setMessage(" Please log in first");
+    if (!token) return setMessage("⚠️ Please log in first");
 
     if (!name || !description || !type || !startTime || !endTime || !points) {
-      return setMessage("Please fill in all required fields");
+      return setMessage("❗Please fill in all required fields");
     }
 
     try {
@@ -49,7 +49,7 @@ export default function ManagerCreatePromotionPage() {
 
       const data = await res.json();
       if (res.ok) {
-        setMessage(` Promotion created successfully ID: ${data.id}`);
+        setMessage(`✅ Promotion created successfully ID: ${data.id}`);
         setName('');
         setDescription('');
         setType('automatic');
@@ -59,18 +59,18 @@ export default function ManagerCreatePromotionPage() {
         setRate('');
         setPoints('');
       } else {
-        setMessage(` Creation failed: ${data.error || 'Unknown error'}`);
+        setMessage(`❌ Creation failed: ${data.error || 'Unknown error'}`);
       }
     } catch (err) {
       console.error(err);
-      setMessage(" Network error");
+      setMessage("❌ Network error");
     }
   };
 
   return (
     <div className="promo-create-container">
       <img src={bowImage} alt="bow" className="promo-bow" />
-      <h2 className="promo-title"> Create Promotion</h2>
+      <h2 className="promo-title">🎁 Create Promotion</h2>
 
       <div className="promo-form">
         <label>Promotion Name (Required)</label>
@@ -100,10 +100,10 @@ export default function ManagerCreatePromotionPage() {
         <label>Base Points (Required)</label>
         <input type="number" value={points} onChange={e => setPoints(e.target.value)} className="form-input" />
 
-        <button onClick={handleCreate} className="form-button"> Submit Promotion</button>
+        <button onClick={handleCreate} className="form-button">✨ Submit Promotion</button>
 
         <button onClick={() => navigate('/content')} className="back-to-content-btn">
-           Back to Menu
+          🔙 Back to Menu
         </button>
 
         {message && <p className="form-message">{message}</p>}

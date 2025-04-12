@@ -20,9 +20,9 @@ export default function MyOrganizedEventParticipantsPage() {
 
     if (res.ok) {
       setGuests(prev => prev.filter(g => g.id !== userId));
-      setMessage(" Guest removed");
+      setMessage("✅ Guest removed");
     } else {
-      setMessage(" Failed to remove");
+      setMessage("❌ Failed to remove");
     }
   };
   const navigate = useNavigate();
@@ -47,7 +47,7 @@ export default function MyOrganizedEventParticipantsPage() {
 
   const handleAddGuest = async () => {
     if (!utorid) {
-      setMessage("Please enter UTORid");
+      setMessage("❗Please enter UTORid");
       return;
     }
 
@@ -72,16 +72,16 @@ export default function MyOrganizedEventParticipantsPage() {
         name: data.guestAdded.name
       }]);
       setUtorid('');
-      setMessage(" Successfully added");
+      setMessage("✅ Successfully added");
     } else {
-      setMessage(` Failed to add: ${data.error || 'Unknown error'}`);
+      setMessage(`❌ Failed to add: ${data.error || 'Unknown error'}`);
     }
   };
 
   return (
     <div className="guest-container">
       <img src={bowImage} alt="bow" className="guest-bow" />
-      <h2 className="guest-title"> Event Guest Management</h2>
+      <h2 className="guest-title">👥 Event Guest Management</h2>
 
       <div className="guest-form">
         <label>Add Guest UTORid:</label>
@@ -91,12 +91,12 @@ export default function MyOrganizedEventParticipantsPage() {
           placeholder="Enter user UTORid"
           className="form-input"
         />
-        <button onClick={handleAddGuest} className="form-button"> Add</button>
+        <button onClick={handleAddGuest} className="form-button">➕ Add</button>
       </div>
 
       {message && <p className="form-message">{message}</p>}
 
-      <h3 className="guest-subtitle"> Current Guest List:</h3>
+      <h3 className="guest-subtitle">🎀 Current Guest List:</h3>
       <ul className="guest-list">
         {guests.map(guest => (
           <li key={guest.id} className="guest-card">
@@ -105,14 +105,14 @@ export default function MyOrganizedEventParticipantsPage() {
               onClick={() => handleRemoveGuest(guest.id)}
               className="remove-button"
             >
-               Remove
+              🗑️ Remove
             </button>
           </li>
         ))}
       </ul>
 
       <button onClick={() => navigate('/my-events')} className="back-to-content-btn">
-         Back
+        🔙 Back
       </button>
     </div>
   );

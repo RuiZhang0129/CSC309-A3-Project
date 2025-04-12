@@ -57,6 +57,7 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     transition: transform 0.2s ease;
     width: 100%;
+    /* 💡 占满父级最大宽度 */
     box-sizing: border-box;
 }
 

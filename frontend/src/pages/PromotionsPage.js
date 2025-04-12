@@ -22,7 +22,7 @@ export default function PromotionsPage() {
       .then(data => {
         setPromotions(data.results || []);
         setLoading(false);
-        console.log(" Promotions data returned from backend:", data.results);
+        console.log("🧪 Promotions data returned from backend:", data.results);
       })
       .catch(err => {
         console.error("Error fetching promotions:", err);
@@ -35,28 +35,28 @@ export default function PromotionsPage() {
   return (
     <div className="promo-container">
       <img src={bowImage} alt="bow" className="promo-bow" />
-      <h2 className="promo-title"> Currently Available Promotions</h2>
+      <h2 className="promo-title">🎁 Currently Available Promotions</h2>
 
       {loading ? (
         <p className="promo-loading">Loading...</p>
       ) : promotions.length === 0 ? (
-        <p className="promo-empty"> No available promotions</p>
+        <p className="promo-empty">😿 No available promotions</p>
       ) : (
         <ul className="promo-list">
           {promotions.map(promo => (
             <li key={promo.id} className="promo-card">
-              <h4> {promo.name}</h4>
-              <p> Reward Points: <strong>{promo.points}</strong></p>
-              {promo.minSpending && <p> Minimum Spending: ${promo.minSpending}</p>}
-              {promo.rate && <p> Reward Rate: {promo.rate}x</p>}
-              <p> Valid Until: {new Date(promo.endTime).toLocaleString()}</p>
+              <h4>🎉 {promo.name}</h4>
+              <p>💰 Reward Points: <strong>{promo.points}</strong></p>
+              {promo.minSpending && <p>📉 Minimum Spending: ${promo.minSpending}</p>}
+              {promo.rate && <p>🧮 Reward Rate: {promo.rate}x</p>}
+              <p>⏰ Valid Until: {new Date(promo.endTime).toLocaleString()}</p>
             </li>
           ))}
         </ul>
       )}
 
       <button onClick={() => navigate('/content')} className="back-to-content-btn">
-         Back to Menu
+        🔙 Back to Menu
       </button>
     </div>
   );

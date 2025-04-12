@@ -108,6 +108,7 @@
     background-color: #d50000;
 }
 
+/* 蝴蝶结动画样式 */
 .organized-bow {
     position: absolute;
     top: 20px;
@@ -133,6 +134,7 @@
     background-color: #ec407a;
 }
 
+/* 动画 */
 @keyframes float {
 
     0%,

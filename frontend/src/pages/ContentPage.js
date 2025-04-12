@@ -16,7 +16,7 @@ export default function ContentPage() {
 
     return (
         <div className="content-container">
-            <h2 className="content-title"> My Function Menu</h2>
+            <h2 className="content-title">🎀 My Function Menu</h2>
 
             <div className="button-grid">
                 {/* All Users */}

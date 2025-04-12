@@ -44,7 +44,7 @@ export default function ManagerUserListPage() {
   return (
     <div className="userlist-container">
       <img src={bowImage} alt="bow" className="userlist-bow" />
-      <h2 className="userlist-title"> User Management</h2>
+      <h2 className="userlist-title">📋 User Management</h2>
 
       <div className="filter-row">
         <label>Role:</label>
@@ -77,8 +77,8 @@ export default function ManagerUserListPage() {
             <p><strong>Name:</strong> {user.name}</p>
             <p><strong>Email:</strong> {user.email}</p>
             <p><strong>Role:</strong> {user.role}</p>
-            <p><strong>Status:</strong> {user.verified ? ' Verified' : ' Not Verified'}</p>
-            <Link to={`/manager/users/${user.id}`} className="manage-link"> Manage User</Link>
+            <p><strong>Status:</strong> {user.verified ? '✅ Verified' : '❌ Not Verified'}</p>
+            <Link to={`/manager/users/${user.id}`} className="manage-link">🔧 Manage User</Link>
           </div>
         ))}
       </div>
@@ -97,7 +97,7 @@ export default function ManagerUserListPage() {
       </div>
 
       <button onClick={() => navigate('/content')} className="back-to-content-btn">
-         Back to Menu
+        🔙 Back to Menu
       </button>
     </div>
   );

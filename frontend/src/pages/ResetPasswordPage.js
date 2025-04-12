@@ -38,7 +38,7 @@ export default function ResetPasswordPage() {
   return (
     <div className="reset-container">
       <img src={bowImage} alt="bow" className="reset-bow" />
-      <h2 className="reset-title"> Set Password to Activate Account</h2>
+      <h2 className="reset-title">🎀 Set Password to Activate Account</h2>
 
       <form className="reset-form" onSubmit={handleReset}>
         <input
@@ -53,11 +53,11 @@ export default function ResetPasswordPage() {
           onChange={(e) => setPassword(e.target.value)}
         />
         <button type="submit" className="btn-primary">Set Password and Activate</button>
-        {message && <p className="form-message"> {message}</p>}
+        {message && <p className="form-message">❌ {message}</p>}
       </form>
 
       <button onClick={() => navigate('/content')} className="back-to-content-btn">
-         Back to Menu
+        🔙 Back to Menu
       </button>
     </div>
   );

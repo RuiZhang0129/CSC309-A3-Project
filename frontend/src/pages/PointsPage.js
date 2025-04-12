@@ -30,7 +30,7 @@ export default function PointsPage() {
         return res.json();
       })
       .then(data => {
-        console.log(" Retrieved user info:", data);
+        console.log("📦 Retrieved user info:", data);
         if (data.points !== undefined) {
           setPoints(data.points);
         } else {
@@ -38,7 +38,7 @@ export default function PointsPage() {
         }
       })
       .catch(err => {
-        console.error(" Request error:", err);
+        console.error("❌ Request error:", err);
         setError("Request error: " + err.message);
       })
       .finally(() => setLoading(false));
@@ -47,7 +47,7 @@ export default function PointsPage() {
   return (
     <div className="points-container">
       <img src={bowImage} alt="bow" className="points-bow" />
-      <h2 className="points-title"> My Available Points </h2>
+      <h2 className="points-title">🎀 My Available Points 🎀</h2>
 
       {loading && <p className="points-loading">Loading points...</p>}
       {error && <p className="points-error">{error}</p>}
@@ -57,7 +57,7 @@ export default function PointsPage() {
       )}
 
       <button onClick={() => navigate('/content')} className="back-to-content-btn">
-         Back to Menu
+        🔙 Back to Menu
       </button>
     </div>
   );

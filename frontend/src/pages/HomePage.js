@@ -19,7 +19,7 @@ export default function HomePage() {
 
       <header className="home-header">
         <h1>Welcome to the Hello Kitty World!</h1>
-        <p>Explore the cutest world filled with friendship and fun </p>
+        <p>Explore the cutest world filled with friendship and fun 💖</p>
         <img
           src="https://upload.wikimedia.org/wikipedia/en/0/05/Hello_kitty_character_portrait.png"
           alt="Hello Kitty"

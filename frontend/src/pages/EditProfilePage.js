@@ -61,16 +61,16 @@ export default function EditProfilePage() {
 
     const data = await res.json();
     if (res.ok) {
-      setMessage(" Successfully updated");
+      setMessage("✅ Successfully updated");
     } else {
-      setMessage(` Update failed: ${data.error || 'Unknown error'}`);
+      setMessage(`❌ Update failed: ${data.error || 'Unknown error'}`);
     }
   };
 
   return (
     <div className="edit-container">
       <img src={bowImage} alt="bow" className="edit-bow" />
-      <h2 className="edit-title"> Edit My Profile</h2>
+      <h2 className="edit-title">🎀 Edit My Profile</h2>
 
       <div className="form-group">
         <label>Name:</label>
@@ -99,7 +99,7 @@ export default function EditProfilePage() {
 
       <button onClick={handleSubmit} className="form-button">Save Changes</button>
       <button onClick={() => navigate('/profile')} className="back-to-content-btn">
-         Back
+        🔙 Back
       </button>
 
     </div>

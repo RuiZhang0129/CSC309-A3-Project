@@ -33,7 +33,7 @@ export default function MyOrganizedEventDetailPage() {
       .then(res => res.json())
       .then(data => {
         if (!data || data.error) {
-          setMessage(" Load failed: " + (data.error || "Unknown error"));
+          setMessage("❌ Load failed: " + (data.error || "Unknown error"));
         } else {
           setEvent(data);
           setForm({
@@ -79,9 +79,9 @@ export default function MyOrganizedEventDetailPage() {
 
     const data = await res.json();
     if (res.ok) {
-      setMessage(" Update successful!");
+      setMessage("✅ Update successful!");
     } else {
-      setMessage(" Update failed: " + (data.error || "Unknown error"));
+      setMessage("❌ Update failed: " + (data.error || "Unknown error"));
     }
   };
 
@@ -91,7 +91,7 @@ export default function MyOrganizedEventDetailPage() {
   return (
     <div className="event-container">
       <img src={bowImage} alt="bow" className="event-bow" />
-      <h2 className="event-title"> Edit Event: {event.name}</h2>
+      <h2 className="event-title">🎀 Edit Event: {event.name}</h2>
 
       <div className="event-form">
         <label>Name:</label>
@@ -124,12 +124,12 @@ export default function MyOrganizedEventDetailPage() {
           className="checkbox-published"
         />
 
-        <button onClick={handleUpdate} className="btn-primary"> Save Changes</button>
+        <button onClick={handleUpdate} className="btn-primary">💾 Save Changes</button>
         {message && <p className="form-message">{message}</p>}
       </div>
 
       <button onClick={() => navigate('/my-events')} className="back-to-content-btn">
-         Back
+        🔙 Back
       </button>
     </div>
   );

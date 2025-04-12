@@ -36,8 +36,8 @@ export default function ManagerTransactionDetailPage() {
       body: JSON.stringify({ suspicious: true })
     });
     const data = await res.json();
-    if (res.ok) setMessage(" Marked as suspicious transaction");
-    else setMessage(` Mark failed: ${data.error || 'Unknown error'}`);
+    if (res.ok) setMessage("✅ Marked as suspicious transaction");
+    else setMessage(`❌ Mark failed: ${data.error || 'Unknown error'}`);
   };
 
 
@@ -58,8 +58,8 @@ export default function ManagerTransactionDetailPage() {
       })
     });
     const data = await res.json();
-    if (res.ok) setMessage(" Adjustment transaction created");
-    else setMessage(` Creation failed: ${data.error || 'Unknown error'}`);
+    if (res.ok) setMessage("✅ Adjustment transaction created");
+    else setMessage(`❌ Creation failed: ${data.error || 'Unknown error'}`);
   };
 
   if (!tx) return <div>Loading...</div>;
@@ -67,23 +67,23 @@ export default function ManagerTransactionDetailPage() {
   return (
     <div className="tx-container">
       <img src={bowImage} alt="bow" className="tx-bow" />
-      <h2 className="tx-title"> Transaction Detail #{tx.id}</h2>
+      <h2 className="tx-title">📄 Transaction Detail #{tx.id}</h2>
 
       <div className="tx-card">
         <p><strong>Type:</strong> {tx.type}</p>
         <p><strong>Points:</strong> {tx.amount}</p>
         <p><strong>User:</strong> {tx.utorid}</p>
         <p><strong>Time:</strong> {new Date(tx.createdAt).toLocaleString()}</p>
-        <p><strong>Suspicious:</strong> {tx.suspicious ? ' Yes' : ' No'}</p>
+        <p><strong>Suspicious:</strong> {tx.suspicious ? '✅ Yes' : '❌ No'}</p>
         <p><strong>Remark:</strong> {tx.remark || 'None'}</p>
       </div>
 
       <div className="tx-actions">
-        <button onClick={handleMarkSuspicious} className="btn-warn"> Mark as Suspicious</button>
+        <button onClick={handleMarkSuspicious} className="btn-warn">⚠️ Mark as Suspicious</button>
       </div>
 
       <div className="tx-adjust">
-        <h4> Create Point Adjustment:</h4>
+        <h4>📌 Create Point Adjustment:</h4>
         <label>Adjustment Amount:</label>
         <input
           type="number"
@@ -101,7 +101,7 @@ export default function ManagerTransactionDetailPage() {
       {message && <p className="tx-message">{message}</p>}
 
       <button onClick={() => navigate('/manager/transactions')} className="back-to-content-btn">
-         Back
+        🔙 Back
       </button>
     </div>
   );

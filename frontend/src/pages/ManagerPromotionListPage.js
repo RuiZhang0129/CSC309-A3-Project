@@ -44,7 +44,7 @@ export default function ManagerPromotionListPage() {
   return (
     <div className="promo-container">
       <img src={bowImage} alt="bow" className="promo-bow" />
-      <h2 className="promo-title"> All Promotions</h2>
+      <h2 className="promo-title">📦 All Promotions</h2>
 
       <div className="promo-filters">
         <label>Type:</label>
@@ -71,10 +71,10 @@ export default function ManagerPromotionListPage() {
       <div className="promo-card-list">
         {promotions.map(promo => (
           <div key={promo.id} className="promo-card">
-            <p><strong> Name:</strong> {promo.name}</p>
-            <p><strong> Points:</strong> {promo.points}</p>
-            <p><strong> Validity:</strong> {new Date(promo.startTime).toLocaleString()} - {new Date(promo.endTime).toLocaleString()}</p>
-            <Link to={`/manager/promotions/${promo.id}`} className="promo-link"> View Details</Link>
+            <p><strong>🎀 Name:</strong> {promo.name}</p>
+            <p><strong>🎁 Points:</strong> {promo.points}</p>
+            <p><strong>🕒 Validity:</strong> {new Date(promo.startTime).toLocaleString()} - {new Date(promo.endTime).toLocaleString()}</p>
+            <Link to={`/manager/promotions/${promo.id}`} className="promo-link">🔍 View Details</Link>
           </div>
         ))}
       </div>
@@ -93,7 +93,7 @@ export default function ManagerPromotionListPage() {
       </div>
 
       <button onClick={() => navigate('/content')} className="back-to-content-btn">
-         Back to Menu
+        🔙 Back to Menu
       </button>
     </div>
   );
