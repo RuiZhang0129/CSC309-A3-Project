@@ -6,26 +6,30 @@
 # 2. How to configure various servers (e.g., Nginx, Apache, etc)
 
 
-backend setup
-cd backend
-npm install
+backend setup:
 
-frontend setup
-cd ../frontend
-npm install
-npm start
+	cd backend // get into the backend folder
+	npm install //read the package.json, set up the backend
+	node index.js 3001 // run the backend under the 3001 port
 
-prisma setup
-npx prisma generate
-npx prisma migrate dev --name init
-npm run seed   # Seed the database with test dat
+frontend setup:
 
-detail of data
-npx prisma studio
+	cd ../frontend // get into the frontend folder
+	npm install //read the package.json, set up the frontend
+	npm start //run the frontend, based on the instruction in package.json
 
-run "node index.js 3001" for backend
-run "npm start" for frontend
+prisma setup:
 
+	npx prisma generate // set up the initial prisma file
+	npx prisma migrate dev --name init // connect the updated prisma to the new program.
+	npm run seed   // Seed the database with test dat
 
+detail of data: 
 
-npm install dotenv
+	npx prisma studio //show all the data in the schema.prisma
+
+run the program locally:
+
+	run "node index.js 3001" for backend 
+	run "npm start" for frontend 
+

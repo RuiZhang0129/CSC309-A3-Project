@@ -554,7 +554,7 @@ app.get("/users/me", authenticate, async (req, res) => {
 
 app.patch("/users/me/password", authenticate, async (req, res) => {
     try {
-        const userId = req.user.id; // 🔹 这里 `authenticate` 确保了 `req.user` 可用
+        const userId = req.user.id; 
         const { old, new: newPassword } = req.body;
 
         if (!old || !newPassword) {
@@ -725,7 +725,7 @@ app.patch("/users/:userId", authenticate, async (req, res) => {
 
         if (role) {
             const roleLower = role.toLowerCase();
-            const validRoles = ["regular", "cashier", "manager", "superuser"]; // ← 加上合法值检查
+            const validRoles = ["regular", "cashier", "manager", "superuser"]; 
 
             if (!validRoles.includes(roleLower)) {
                 return error(res, 400, "Invalid role value");
