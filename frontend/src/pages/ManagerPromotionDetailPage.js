@@ -59,8 +59,8 @@ export default function ManagerPromotionDetailPage() {
       })
     });
     const data = await res.json();
-    if (res.ok) setMessage("✅ Update successful");
-    else setMessage(`❌ Update failed: ${data.error || 'Unknown error'}`);
+    if (res.ok) setMessage(" Update successful");
+    else setMessage(` Update failed: ${data.error || 'Unknown error'}`);
   };
 
   const handleDelete = async () => {
@@ -73,7 +73,7 @@ export default function ManagerPromotionDetailPage() {
     if (res.ok) {
       navigate('/manager/promotions');
     } else {
-      setMessage('❌ Deletion failed');
+      setMessage(' Deletion failed');
     }
   };
 
@@ -82,7 +82,7 @@ export default function ManagerPromotionDetailPage() {
   return (
     <div className="promo-detail-container">
       <img src={bowImage} alt="bow" className="promo-bow" />
-      <h2 className="promo-title">🎯 Manage Promotion - {promotion.name}</h2>
+      <h2 className="promo-title"> Manage Promotion - {promotion.name}</h2>
 
       <div className="promo-form">
         <label>Name:</label>
@@ -111,10 +111,10 @@ export default function ManagerPromotionDetailPage() {
 
         {["manager", "superuser"].includes(role) && (
           <div className="button-group">
-            <button onClick={handleUpdate} className="btn-primary">💾 Save Changes</button>
-            <button onClick={handleDelete} className="btn-danger">🗑️ Delete Promotion</button>
+            <button onClick={handleUpdate} className="btn-primary"> Save Changes</button>
+            <button onClick={handleDelete} className="btn-danger"> Delete Promotion</button>
             <button onClick={() => navigate('/manager/promotions')} className="back-to-content-btn">
-              🔙 Back
+               Back
             </button>
           </div>
         )}

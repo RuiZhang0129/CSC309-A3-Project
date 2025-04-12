@@ -33,7 +33,6 @@ export default function LoginPage() {
         throw new Error(data.error || "Login failed");
       }
 
-      // ✅ First decode the token to get the role
       const decoded = jwtDecode(data.token);
       localStorage.setItem("token", data.token);
       localStorage.setItem("role", decoded.role); 
@@ -46,7 +45,7 @@ export default function LoginPage() {
   return (
     <div className="login-container">
       <img src={bowImage} alt="bow" className="corner-bow" />
-      <h1 className="login-title">🎀 Hello Kitty Login 🎀</h1>
+      <h1 className="login-title"> Hello Kitty Login </h1>
       <form onSubmit={handleLogin} className="login-form">
         <input
           type="text"
@@ -68,7 +67,7 @@ export default function LoginPage() {
         {error && <p className="login-error">{error}</p>}
 
         <div className="extra-buttons">
-          <button type="button" onClick={() => navigate("/")} className="back-btn">🏠 Back to Home</button>
+          <button type="button" onClick={() => navigate("/")} className="back-btn"> Back to Home</button>
         </div>
 
       </form>

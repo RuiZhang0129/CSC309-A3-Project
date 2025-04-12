@@ -20,10 +20,10 @@ export default function ManagerCreateEventPage() {
 
   const handleCreate = async () => {
     const token = localStorage.getItem("token");
-    if (!token) return setMessage("⚠️ Please log in first");
+    if (!token) return setMessage(" Please log in first");
 
     if (!name || !description || !location || !startTime || !endTime || !points || published === '') {
-      return setMessage("❗Please fill in all required fields (including publication status)");
+      return setMessage("Please fill in all required fields (including publication status)");
     }
 
     try {
@@ -49,56 +49,56 @@ export default function ManagerCreateEventPage() {
 
       const data = await res.json();
       if (res.ok) {
-        setMessage(`✅ Event created successfully, ID: ${data.id}`);
+        setMessage(` Event created successfully, ID: ${data.id}`);
         setName(''); setDescription(''); setLocation(''); setStartTime(''); setEndTime('');
         setCapacity(''); setPoints(''); setPublished('');
       } else {
-        setMessage(`❌ Creation failed: ${data.error || 'Unknown error'}`);
+        setMessage(` Creation failed: ${data.error || 'Unknown error'}`);
       }
     } catch (err) {
       console.error(err);
-      setMessage("❌ Network error");
+      setMessage(" Network error");
     }
   };
 
   return (
     <div className="event-create-container">
       <img src={bowImage} alt="bow" className="event-bow" />
-      <h2 className="event-title">📅 Create Event</h2>
+      <h2 className="event-title"> Create Event</h2>
 
       <div className="event-form">
-        <label>📛 Event Name</label>
+        <label> Event Name</label>
         <input value={name} onChange={e => setName(e.target.value)} className="form-input" />
 
-        <label>📝 Event Description</label>
+        <label> Event Description</label>
         <input value={description} onChange={e => setDescription(e.target.value)} className="form-input" />
 
-        <label>📍 Event Location</label>
+        <label> Event Location</label>
         <input value={location} onChange={e => setLocation(e.target.value)} className="form-input" />
 
-        <label>🕐 Start Time</label>
+        <label> Start Time</label>
         <input type="datetime-local" value={startTime} onChange={e => setStartTime(e.target.value)} className="form-input" />
 
-        <label>🕔 End Time</label>
+        <label> End Time</label>
         <input type="datetime-local" value={endTime} onChange={e => setEndTime(e.target.value)} className="form-input" />
 
-        <label>👥 Capacity (Optional)</label>
+        <label> Capacity (Optional)</label>
         <input type="number" value={capacity} onChange={e => setCapacity(e.target.value)} className="form-input" />
 
-        <label>🎁 Total Points Allocation</label>
+        <label> Total Points Allocation</label>
         <input type="number" value={points} onChange={e => setPoints(e.target.value)} className="form-input" />
 
-        <label>📣 Publish?</label>
+        <label> Publish?</label>
         <select value={published} onChange={e => setPublished(e.target.value)} className="form-input">
           <option value="">Please Select</option>
-          <option value="true">✅ Published</option>
-          <option value="false">❌ Not Published</option>
+          <option value="true"> Published</option>
+          <option value="false"> Not Published</option>
         </select>
 
         <button onClick={handleCreate} className="form-button">✨ Submit Event</button>
 
         <button onClick={() => navigate('/content')} className="back-to-content-btn">
-          🔙 Back to Menu
+           Back to Menu
         </button>
 
         {message && <p className="form-message">{message}</p>}

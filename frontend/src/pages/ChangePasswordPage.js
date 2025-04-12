@@ -17,7 +17,7 @@ export default function ChangePassword() {
 
         const token = localStorage.getItem('token');
         if (!token) {
-            setMessage("⚠️ Please log in first");
+            setMessage(" Please log in first");
             return;
         }
 
@@ -36,18 +36,18 @@ export default function ChangePassword() {
 
             if (!res.ok) throw new Error(data.error || "Modification failed");
 
-            setMessage("✅ Password changed successfully!");
+            setMessage(" Password changed successfully!");
             setOldPassword('');
             setNewPassword('');
         } catch (err) {
-            setMessage(`❌ ${err.message}`);
+            setMessage(` ${err.message}`);
         }
     };
 
     return (
         <div className="change-container">
             <img src={bowImage} alt="bow" className="change-bow" />
-            <h2 className="change-title">🔐 Change Password</h2>
+            <h2 className="change-title"> Change Password</h2>
 
             <form className="change-form" onSubmit={handleChangePassword}>
                 <input
@@ -67,7 +67,7 @@ export default function ChangePassword() {
             </form>
 
             <button onClick={() => navigate('/edit-profile')} className="back-to-content-btn">
-                🔙 Back
+                 Back
             </button>
         </div>
     );

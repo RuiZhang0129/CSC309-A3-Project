@@ -62,12 +62,12 @@ export default function HomePage() {
 
     return (
         <div className="afterlogin-container">
-            <h1 className="hello-title">🎀 Welcome Back 🎀</h1>
+            <h1 className="hello-title"> Welcome Back </h1>
 
             {role === "regular" && (
                 <div className="regular-dashboard">
-                    <h2>🎯 Current Points: {points ?? 'Loading...'}</h2>
-                    <h3>📒 Recent Transactions:</h3>
+                    <h2> Current Points: {points ?? 'Loading...'}</h2>
+                    <h3> Recent Transactions:</h3>
                     <ul className="transaction-list">
                         {transactions.map(tx => (
                             <li key={tx.id}>
@@ -75,26 +75,26 @@ export default function HomePage() {
                             </li>
                         ))}
                     </ul>
-                    <button onClick={() => goTo('/content')}>🎀 Go to Menu</button>
+                    <button onClick={() => goTo('/content')}> Go to Menu</button>
                 </div>
             )}
 
             {role === "cashier" && (
                 <div className="cashier-panel">
-                    <button onClick={() => goTo('/cashier/create-transaction')}>🧾 Create Transaction</button>
-                    <button onClick={() => goTo('/cashier/process-redemption')}>🎫 Process Redemption</button>
+                    <button onClick={() => goTo('/cashier/create-transaction')}> Create Transaction</button>
+                    <button onClick={() => goTo('/cashier/process-redemption')}> Process Redemption</button>
                     <button onClick={() => goTo('/content')}>Back to Menu</button>
                 </div>
             )}
 
             {(role === "manager" || role === "superuser") && (
                 <div className="manager-dashboard">
-                    <button onClick={() => goTo('/manager/users')}>👥 User Management</button>
-                    <button onClick={() => goTo('/manager/promotions')}>🎁 View Promotions</button>
-                    <button onClick={() => goTo('/manager/events')}>📅 Event Management</button>
-                    <button onClick={() => goTo('/content')}>🎀 Go to Menu</button>
+                    <button onClick={() => goTo('/manager/users')}> User Management</button>
+                    <button onClick={() => goTo('/manager/promotions')}> View Promotions</button>
+                    <button onClick={() => goTo('/manager/events')}> Event Management</button>
+                    <button onClick={() => goTo('/content')}> Go to Menu</button>
 
-                    <h3 className="section-title">📅 All Events</h3>
+                    <h3 className="section-title"> All Events</h3>
                     <div className="scroll-section">
                         {events.map(event => (
                             <div key={event.id} className="scroll-card">
@@ -104,7 +104,7 @@ export default function HomePage() {
                         ))}
                     </div>
 
-                    <h3 className="section-title">🎁 Current Promotions</h3>
+                    <h3 className="section-title"> Current Promotions</h3>
                     <div className="scroll-section">
                         {promotions.map(promo => (
                             <div key={promo.id} className="scroll-card">

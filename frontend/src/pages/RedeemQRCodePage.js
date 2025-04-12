@@ -37,19 +37,19 @@ export default function RedeemQRCodePage() {
   return (
     <div className="redeemqr-container">
       <img src={bowImage} alt="bow" className="redeemqr-bow" />
-      <h2 className="redeemqr-title">🎫 My Redemption Request QR Codes</h2>
+      <h2 className="redeemqr-title"> My Redemption Request QR Codes</h2>
 
       {error && <p className="redeemqr-error">{error}</p>}
 
       {transactions.length === 0 ? (
-        <p className="redeemqr-empty">No redemption records 😿</p>
+        <p className="redeemqr-empty">No redemption records </p>
       ) : (
         <div className="redeemqr-list">
           {transactions.map(tx => (
             <div key={tx.id} className="redeemqr-card">
               <p><strong>ID:</strong> {tx.id}</p>
               <p><strong>Points:</strong> {tx.amount}</p>
-              <p><strong>Status:</strong> {tx.processed ? "✅ Processed" : "⏳ Pending"}</p>
+              <p><strong>Status:</strong> {tx.processed ? " Processed" : " Pending"}</p>
               <QRCodeSVG value={String(tx.id)} size={180} />
             </div>
           ))}
@@ -57,7 +57,7 @@ export default function RedeemQRCodePage() {
       )}
 
       <button onClick={() => navigate('/content')} className="back-to-content-btn">
-        🔙 Back to Menu
+         Back to Menu
       </button>
     </div>
   );

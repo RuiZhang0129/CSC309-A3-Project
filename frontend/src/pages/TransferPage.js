@@ -14,12 +14,12 @@ export default function TransferPage() {
   const handleTransfer = async () => {
     const token = localStorage.getItem('token');
     if (!token) {
-      setMessage('⚠️ Please log in first');
+      setMessage(' Please log in first');
       return;
     }
 
     if (!utorid || !amount || parseInt(amount) <= 0) {
-      setMessage('❗Please enter a valid utorid and points amount');
+      setMessage('Please enter a valid utorid and points amount');
       return;
     }
 
@@ -40,15 +40,15 @@ export default function TransferPage() {
 
       const data = await res.json();
       if (res.ok) {
-        setMessage(`✅ Successfully transferred to ${data.recipient}, Transaction ID: ${data.id}`);
+        setMessage(` Successfully transferred to ${data.recipient}, Transaction ID: ${data.id}`);
         setUtorid('');
         setAmount('');
       } else {
-        setMessage(`❌ Failed: ${data.error}`);
+        setMessage(` Failed: ${data.error}`);
       }
 
     } catch (err) {
-      setMessage('❌ System error');
+      setMessage(' System error');
       console.error(err);
     }
   };
@@ -56,7 +56,7 @@ export default function TransferPage() {
   return (
     <div className="transfer-container">
       <img src={bowImage} alt="bow" className="transfer-bow" />
-      <h2 className="transfer-title">🎀 Points Transfer 🎀</h2>
+      <h2 className="transfer-title"> Points Transfer </h2>
 
       <div className="form-group">
         <label>Recipient UTORid:</label>
@@ -77,13 +77,13 @@ export default function TransferPage() {
       </div>
 
       <button onClick={handleTransfer} className="transfer-button">
-        💸 Confirm Transfer
+         Confirm Transfer
       </button>
 
       {message && <p className="transfer-message">{message}</p>}
 
       <button onClick={() => navigate('/content')} className="back-to-content-btn">
-        🔙 Back to Menu
+         Back to Menu
       </button>
     </div>
   );

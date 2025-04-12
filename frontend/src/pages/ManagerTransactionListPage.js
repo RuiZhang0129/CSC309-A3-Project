@@ -53,7 +53,7 @@ export default function ManagerTransactionListPage() {
                 utoridMap[id] = json.utorid;
               }
             } catch (err) {
-              console.warn("❌ Failed to fetch related utorid", id);
+              console.warn(" Failed to fetch related utorid", id);
             }
           })
         );
@@ -73,7 +73,7 @@ export default function ManagerTransactionListPage() {
   return (
     <div className="txlist-container">
       <img src={bowImage} alt="bow" className="txlist-bow" />
-      <h2 className="txlist-title">📑 All Transactions</h2>
+      <h2 className="txlist-title"> All Transactions</h2>
 
       <div className="filter-row">
         <label>Type:</label>
@@ -108,8 +108,8 @@ export default function ManagerTransactionListPage() {
             <p><strong>Points:</strong> {tx.amount}</p>
             <p><strong>User:</strong> {tx.user?.utorid || tx.relatedId}</p>
             <p><strong>Time:</strong> {new Date(tx.createdAt).toLocaleString()}</p>
-            <p><strong>Suspicious:</strong> {tx.suspicious ? '⚠️ Yes' : '✅ No'}</p>
-            <Link to={`/manager/transactions/${tx.id}`} className="tx-link">🔍 View Detail</Link>
+            <p><strong>Suspicious:</strong> {tx.suspicious ? ' Yes' : ' No'}</p>
+            <Link to={`/manager/transactions/${tx.id}`} className="tx-link"> View Detail</Link>
           </div>
         ))}
       </div>
@@ -128,7 +128,7 @@ export default function ManagerTransactionListPage() {
       </div>
 
       <button onClick={() => navigate('/content')} className="back-to-content-btn">
-        🔙 Back to Menu
+         Back to Menu
       </button>
 
     </div>

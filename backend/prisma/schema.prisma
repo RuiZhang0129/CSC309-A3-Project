@@ -42,12 +42,12 @@ model User {
   expiresAt           DateTime?
   avatarUrl           String?
 
-  transactions        Transaction[] @relation("UserTransactions")  // ✅ 修正交易用户关系
-  cashierTransactions Transaction[] @relation("CashierTransactions")  // ✅ 反向关系，匹配 `Transaction.cashier`
+  transactions        Transaction[] @relation("UserTransactions")  
+  cashierTransactions Transaction[] @relation("CashierTransactions")  //  反向关系，匹配 `Transaction.cashier`
   organizedEvents     Event[] @relation("OrganizerRelation")
   eventParticipations EventParticipants[]
-  promotions          Promotion[] @relation("UserPromotions") // ✅ 修复关系
-  eventsOrganized     Event[] @relation("EventOrganizers")  // ✅ 反向关系
+  promotions          Promotion[] @relation("UserPromotions") //  修复关系
+  eventsOrganized     Event[] @relation("EventOrganizers")  //  反向关系
 
   createdTransactions Transaction[] @relation("CreatedTransactions")
 }
@@ -55,10 +55,10 @@ model User {
 model Promotion {
   id          Int   @id @default(autoincrement())        
   name        String                               
-  description String?  // ✅ 允许为空，避免迁移失败
-  type        String?  // ✅ 允许为空
-  startTime   DateTime?  // ✅ 允许为空
-  endTime     DateTime?  // ✅ 允许为空
+  description String?  //  允许为空，避免迁移失败
+  type        String?  //  允许为空
+  startTime   DateTime?  //  允许为空
+  endTime     DateTime?  //  允许为空
   minSpending Int?                                 
   rate        Float?                               
   points      Int      @default(0)                 
@@ -88,8 +88,8 @@ model Transaction {
   cashier     User?    @relation(name: "CashierTransactions", fields: [processedBy], references: [id])  
   suspicious  Boolean  @default(false)  
   relatedId   Int?  
-  relatedType String?  // ✅ 说明 relatedId 关联的实体类型
-  promotions  PromotionTransaction[] @relation(name: "PromotionTransactions")  // ✅ 修正 `@relation` 名称
+  relatedType String?  //  说明 relatedId 关联的实体类型
+  promotions  PromotionTransaction[] @relation(name: "PromotionTransactions")  //  修正 `@relation` 名称
   createdBy   String?  
   creator     User?    @relation("CreatedTransactions", fields: [createdBy], references: [utorid])
 }
@@ -100,14 +100,14 @@ model PromotionTransaction {
   transaction   Transaction @relation(name: "PromotionTransactions", fields: [transactionId], references: [id])
   promotion     Promotion   @relation(name: "PromotionTransactions", fields: [promotionId], references: [id])
 
-  @@id([transactionId, promotionId]) // ✅ 复合主键，防止重复关联
+  @@id([transactionId, promotionId]) //  复合主键，防止重复关联
 }
 
 model Event {
   id           Int      @id @default(autoincrement()) 
   name         String
-  description  String?  // ✅ 新增，可选
-  location     String?  // ✅ 允许为空
+  description  String?  //  新增，可选
+  location     String?  //  允许为空
   organizerId  Int
   organizer    User     @relation(fields: [organizerId], references: [id], name: "OrganizerRelation") 
   guests EventParticipants[]
@@ -116,9 +116,9 @@ model Event {
   endTime      DateTime
   capacity     Int?
   numGuests  Int?
-  pointsRemain Int      @default(0)  // ✅ 可分配积分
-  pointsAwarded Int     @default(0)  // ✅ 已分配积分
-  published    Boolean  @default(false)  // ✅ 仅 `manager` 可修改
+  pointsRemain Int      @default(0)  //  可分配积分
+  pointsAwarded Int     @default(0)  // 已分配积分
+  published    Boolean  @default(false)  //  仅 `manager` 可修改
   transactions Transaction[]  
   
   @@index([startTime])

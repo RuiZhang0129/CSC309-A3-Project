@@ -36,26 +36,26 @@ export default function EventsPage() {
   return (
     <div className="events-container">
       <img src={bowImage} alt="bow" className="events-bow" />
-      <h2 className="events-title">🎀 Currently Published Events 🎀</h2>
+      <h2 className="events-title"> Currently Published Events </h2>
 
       {loading ? (
         <p className="events-loading">Loading...</p>
       ) : events.length === 0 ? (
-        <p className="events-empty">😿 No available events</p>
+        <p className="events-empty"> No available events</p>
       ) : (
         <ul className="events-list">
           {events.map(event => (
             <li className="event-card" key={event.id}>
-              <h4>🎉 {event.name}</h4>
-              <p>📍 Location: {event.location}</p>
-              <p>🕒 Time: {new Date(event.startTime).toLocaleString()} - {new Date(event.endTime).toLocaleString()}</p>
+              <h4> {event.name}</h4>
+              <p> Location: {event.location}</p>
+              <p> Time: {new Date(event.startTime).toLocaleString()} - {new Date(event.endTime).toLocaleString()}</p>
               <a href={`/events/${event.id}`} className="event-link">View Details</a>
             </li>
           ))}
         </ul>
       )}
       <button onClick={() => navigate('/content')} className="back-to-content-btn">
-        🔙 Back to Menu
+         Back to Menu
       </button>
     </div>
   );

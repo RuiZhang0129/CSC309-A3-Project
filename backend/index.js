@@ -113,27 +113,27 @@ async function authenticate(req, res, next) {
 // Role-based access control
 function authorize(...roles) {
     return (req, res, next) => {
-        console.log("🔐 Authorizing user...");
+        console.log("  Authorizing user...");
         console.log("  Allowed roles:", roles);
         console.log("  req.user:", req.user);
         if (!req.user) {
-            console.log("❌ No user found in request");
+            console.log("  No user found in request");
             return res.status(401).json({ error: "Unauthorized: User not authenticated" });
         }
 
         const userRole = req.user.role?.toLowerCase();
         if (!userRole) {
-            console.log("❌ User role missing");
+            console.log("  User role missing");
             return res.status(403).json({ error: "Forbidden: Missing user role" });
         }
 
         const allowedRoles = roles.map(role => role.toLowerCase());
         if (!allowedRoles.includes(userRole)) {
-            console.log(`❌ Role "${userRole}" not allowed`);
+            console.log(`  Role "${userRole}" not allowed`);
             return res.status(403).json({ error: "Forbidden: Access denied" });
         }
 
-        console.log("✅ Authorization passed");
+        console.log("  Authorization passed");
         next();
     };
 }
@@ -296,12 +296,12 @@ app.get("/users", authenticate, authorize("manager", "superuser"), async (req, r
     }
 
     try {
-        console.log("➡️ GET /users filters:", JSON.stringify(filters, null, 2));
+        console.log("  GET /users filters:", JSON.stringify(filters, null, 2));
 
         // Get total count before pagination
         const count = await prisma.user.count({ where: filters });
 
-        console.log("✅ User count:", count);
+        console.log("  User count:", count);
 
         // Fetch users with pagination
         const results = await prisma.user.findMany({
@@ -324,7 +324,7 @@ app.get("/users", authenticate, authorize("manager", "superuser"), async (req, r
             }
         });
 
-        console.log("✅ Retrieved users:", results.length);
+        console.log("  Retrieved users:", results.length);
         return res.status(200).json({ count, results });
 
     } catch (err) {
@@ -359,7 +359,7 @@ app.patch("/users/me", authenticate, upload.single("avatar"), async (req, res) =
         }
 
         if (name === undefined && email === undefined && birthday === undefined) {
-            console.log("❌ [400] Empty payload");
+            console.log("  [400] Empty payload");
             return error(res, 400, "Empty payload");
         }
 
@@ -382,7 +382,7 @@ app.patch("/users/me", authenticate, upload.single("avatar"), async (req, res) =
         }
 
         if (birthday !== undefined && birthday !== null) {
-            console.log("🎂 Raw birthday input:", birthday);
+            console.log("  Raw birthday input:", birthday);
 
             if (!/^\d{4}-\d{2}-\d{2}$/.test(birthday)) {
                 console.log("[400] Invalid birthday format (not YYYY-MM-DD):", birthday);
@@ -436,7 +436,7 @@ app.patch("/users/me", authenticate, upload.single("avatar"), async (req, res) =
         updatedUser.avatarUrl = updatedUser.avatarUrl || null;
         updatedUser.birthday = updatedUser.birthday ? updatedUser.birthday.toISOString().split("T")[0] : null;
 
-        console.log("📤 返回数据:", updatedUser);
+        console.log("  返回数据:", updatedUser);
 
         return res.status(200).json(updatedUser);
     } catch (err) {
@@ -450,8 +450,8 @@ app.get("/users/me", authenticate, async (req, res) => {
         const { id, role } = req.user;
         const now = new Date();
 
-        console.log("🔐 Authenticated user ID:", id, "| Role:", role);
-        console.log("🧑‍💻 当前登录用户：", req.user);
+        console.log("  Authenticated user ID:", id, "| Role:", role);
+        console.log("  当前登录用户：", req.user);
 
 
         const user = await prisma.user.findUnique({
@@ -519,12 +519,12 @@ app.get("/users/me", authenticate, async (req, res) => {
 
 
         if (!user) {
-            console.log("❌ [404] User not found for ID:", id);
+            console.log("  [404] User not found for ID:", id);
             return error(res, 404, "User not found");
         }
 
-        console.log("🎁 返回的 promotions 数量：", user.promotions?.length || 0);
-        console.log("🎁 返回的 promotions ID:", (user.promotions || []).map(p => p.id));
+        console.log("  返回的 promotions 数量：", user.promotions?.length || 0);
+        console.log("  返回的 promotions ID:", (user.promotions || []).map(p => p.id));
 
         const response = {
             id: user.id,
@@ -541,7 +541,7 @@ app.get("/users/me", authenticate, async (req, res) => {
             promotions: user.promotions || []
         };
 
-        console.log("📤 Returning user data:", response);
+        console.log("  Returning user data:", response);
         return res.status(200).json(response);
     } catch (err) {
         console.error("Error fetching user:", err);
@@ -692,7 +692,7 @@ app.patch("/users/:userId", authenticate, async (req, res) => {
         }
 
         //if (!userId || typeof userId !== "string" || userId.length < 10) {
-        //  console.log("❌ [400] Invalid user ID:", userId);
+        //  console.log("  [400] Invalid user ID:", userId);
         //return error(res, 400, "Invalid user ID");
         //}
 
@@ -700,13 +700,13 @@ app.patch("/users/:userId", authenticate, async (req, res) => {
 
         // Validate email format if provided
         if (email && !/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,}$/.test(email)) {
-            console.log("❌ [400] Invalid email format:", email);
+            console.log("  [400] Invalid email format:", email);
             return error(res, 400, "Invalid email format");
         }
 
         // If no valid fields are provided in the payload
         if (email === undefined && verified === undefined && suspicious === undefined && role === undefined) {
-            console.log("❌ [400] Empty payload");
+            console.log("  [400] Empty payload");
             return error(res, 400, "Empty payload");
         }
 
@@ -715,7 +715,7 @@ app.patch("/users/:userId", authenticate, async (req, res) => {
         const isSelfUpdate = userId === requesterId;
 
         if (!isSelfUpdate && !["manager", "superuser"].includes(requesterRole)) {
-            console.log("❌ [403] Access denied");
+            console.log("  [403] Access denied");
             return error(res, 403, "Access denied");
         }
 
@@ -911,7 +911,7 @@ app.post("/auth/tokens", async (req, res) => {
             return res.status(401).json({ error: "Invalid credentials" });
         }
 
-        // 🔹 Ensure user has a password before comparing
+        //  Ensure user has a password before comparing
         if (!user.password) {
             return res.status(401).json({ error: "Unauthorized: User has no password set" });
         }
@@ -1072,7 +1072,7 @@ app.post("/transactions", authenticate, async (req, res) => {
 
             console.log("promotionIds in request:", promotionIds);
             if (!Array.isArray(promotionIds)) {
-                console.log("🚫 not an array => 400");
+                console.log("  not an array => 400");
                 return res.status(400).json({ error: "promotionIds must be an array" });
             }
 
@@ -1100,10 +1100,10 @@ app.post("/transactions", authenticate, async (req, res) => {
                 });
 
                 if (!promo) {
-                    console.log("🚫 not found => 400");
+                    console.log("  not found => 400");
                     return res.status(400).json({ error: `Invalid promotion ID: ${promoId}` });
                 }
-                console.log(`🔍 promoId=${promoId} start=${promo.startTime} end=${promo.endTime} now=${now}`);
+                console.log(`  promoId=${promoId} start=${promo.startTime} end=${promo.endTime} now=${now}`);
 
                 if (!promo.startTime || !promo.endTime || promo.startTime > now || promo.endTime < now) {
                     return res.status(400).json({ error: `Promotion ${promoId} is not active` });
@@ -1123,11 +1123,11 @@ app.post("/transactions", authenticate, async (req, res) => {
                         }
                     });
 
-                    console.log("🎯 checking one-time promo:", promoId, "usedPromo =", usedPromo);
-                    console.log("🧠 current purchase user.id =", user.id);
+                    console.log("  checking one-time promo:", promoId, "usedPromo =", usedPromo);
+                    console.log("  current purchase user.id =", user.id);
 
                     if (usedPromo) {
-                        console.log("🚫 Promotion", promoId, "has already been used by user", user.id);
+                        console.log("  Promotion", promoId, "has already been used by user", user.id);
                         return res.status(400).json({ error: `Promotion ${promoId} has already been used by this user` });
                     }
                 }
@@ -1143,7 +1143,7 @@ app.post("/transactions", authenticate, async (req, res) => {
                 usedPromotions.push(promoId);
             }
 
-            console.log("✅ no invalid promo => go next");
+            console.log("  no invalid promo => go next");
             const cashier = await prisma.user.findUnique({
                 where: { id: creatorId },
                 select: { suspicious: true }
@@ -1258,8 +1258,8 @@ app.post("/transactions", authenticate, async (req, res) => {
 
             const safePromotionIds = Array.isArray(promotionIds) ? promotionIds : [];
 
-            console.log("📦 Received promotionIds:", promotionIds);
-            console.log("✅ Normalized:", safePromotionIds);
+            console.log("  Received promotionIds:", promotionIds);
+            console.log("  Normalized:", safePromotionIds);
             // Create promotion links separately
             if (safePromotionIds.length > 0) {
                 await prisma.promotionTransaction.createMany({
@@ -1412,7 +1412,7 @@ app.get("/transactions/:transactionId", authenticate, authorize("manager", "supe
             return res.status(404).json({ error: "Transaction not found" });
         }
 
-        console.log("📦 Transaction returned:", transaction);
+        console.log("  Transaction returned:", transaction);
 
         const response = {
             id: transaction.id,
@@ -1424,13 +1424,13 @@ app.get("/transactions/:transactionId", authenticate, authorize("manager", "supe
             createdBy: transaction.createdBy,
             createdAt: transaction.createdAt,
         };
-        console.log("💾 DB amount:", transaction.amount);
-        console.log("📦 Final response:", response);
+        console.log("  DB amount:", transaction.amount);
+        console.log("  Final response:", response);
 
 
         if (transaction.type === "purchase") {
             response.spent = transaction.spent ?? 0;
-            response.amount = transaction.amount ?? 0; // ✅ 取 amount 字段！
+            response.amount = transaction.amount ?? 0; //   取 amount 字段！
         }
         else {
             response.amount = transaction.amount ?? 0;
@@ -1441,7 +1441,7 @@ app.get("/transactions/:transactionId", authenticate, authorize("manager", "supe
                 response.redeemed = transaction.amount ?? 0;
             }
         }
-        console.log("📦 Transaction returned:", transaction);
+        console.log("  Transaction returned:", transaction);
         return res.status(200).json(response);
 
     } catch (err) {
@@ -1493,7 +1493,7 @@ app.patch("/transactions/:transactionId/suspicious", authenticate, authorize("ma
         if (!transaction) {
             return res.status(404).json({ error: "Transaction not found" });
         }
-        console.log("📌 [调试] 当前 transaction:");
+        console.log("  [调试] 当前 transaction:");
         console.log("  - ID:", transaction.id);
         console.log("  - suspicious:", transaction.suspicious);
         console.log("  - amount:", transaction.amount);
@@ -1521,7 +1521,7 @@ app.patch("/transactions/:transactionId/suspicious", authenticate, authorize("ma
         if (!user) {
             return res.status(404).json({ error: "User not found" });
         }
-        console.log("📌 [调试] 当前 user:");
+        console.log("  [调试] 当前 user:");
         console.log("  - ID:", user.id);
         console.log("  - utorid:", transaction.user.utorid);
         console.log("  - 原始积分:", user.points);
@@ -1537,9 +1537,9 @@ app.patch("/transactions/:transactionId/suspicious", authenticate, authorize("ma
         }
 
         if (suspicious) {
-            console.log("⚠️ [调试] 正在标记为 suspicious，积分将减少:", adjustment);
+            console.log("  [调试] 正在标记为 suspicious，积分将减少:", adjustment);
         } else {
-            console.log("✅ [调试] 正在取消 suspicious，积分将增加:", adjustment);
+            console.log("  [调试] 正在取消 suspicious，积分将增加:", adjustment);
         }
 
         // 开始数据库事务
@@ -1582,7 +1582,7 @@ app.patch("/transactions/:transactionId/suspicious", authenticate, authorize("ma
         });
 
 
-        console.log("➡️ [调试] 计算后的新积分:", newPoints);
+        console.log("  [调试] 计算后的新积分:", newPoints);
         return res.status(200).json({
             ...updated,
             utorid: updated.user.utorid,
@@ -1603,15 +1603,15 @@ app.patch("/transactions/:transactionId/suspicious", authenticate, authorize("ma
 // /users/me/transactions
 app.post("/users/me/transactions", authenticate, async (req, res) => {
     try {
-        console.log("🛫 [DEBUG] POST /users/me/transactions called");
-        console.log("📦 [DEBUG] Request body:", req.body);
-        console.log("👤 [DEBUG] Authenticated user:", req.user);
+        console.log("  [DEBUG] POST /users/me/transactions called");
+        console.log("  [DEBUG] Request body:", req.body);
+        console.log("  [DEBUG] Authenticated user:", req.user);
 
         const { type, amount, remark = "" } = req.body;
         const utorid = req.user.utorid;
 
         if (type !== "redemption") {
-            console.warn("⚠️ [DEBUG] Invalid type received:", type);
+            console.warn("  [DEBUG] Invalid type received:", type);
             return res.status(400).json({ error: "Invalid transaction type, must be 'redemption'" });
         }
 
@@ -1645,7 +1645,7 @@ app.post("/users/me/transactions", authenticate, async (req, res) => {
         }
 
         if (!user.verified) {
-            console.warn("🚫 [DEBUG] Unverified user:", utorid);
+            console.warn("  [DEBUG] Unverified user:", utorid);
             return res.status(403).json({ error: "Forbidden: User is not verified" });
         }
 
@@ -1676,7 +1676,7 @@ app.post("/users/me/transactions", authenticate, async (req, res) => {
             return res.status(400).json({ error: "Insufficient points for redemption" });
         }
 
-        console.log("✅ [DEBUG] Creating redemption transaction...");
+        console.log("  [DEBUG] Creating redemption transaction...");
 
         const transaction = await prisma.transaction.create({
             data: {
@@ -1690,7 +1690,7 @@ app.post("/users/me/transactions", authenticate, async (req, res) => {
         });
 
 
-        console.log("🎉 [DEBUG] Redemption transaction created:", transaction.id);
+        console.log("  [DEBUG] Redemption transaction created:", transaction.id);
 
         return res.status(201).json({
             id: transaction.id,
@@ -1704,7 +1704,7 @@ app.post("/users/me/transactions", authenticate, async (req, res) => {
 
 
     } catch (err) {
-        console.error("💥 Redemption failed:", err);
+        console.error("  Redemption failed:", err);
         return res.status(500).json({ error: err.message || "Internal Server Error" });
     }
 });
@@ -1816,7 +1816,7 @@ app.get("/users/me/redemptions", authenticate, async (req, res) => {
 // /users/:userId/transactions
 app.post("/users/:userId/transactions", authenticate, async (req, res) => {
     try {
-        console.log("🛫 [DEBUG] POST /users/:userId/transactions called");
+        console.log("  [DEBUG] POST /users/:userId/transactions called");
 
         const rawId = req.params.userId;
         let recipient;
@@ -1836,14 +1836,14 @@ app.post("/users/:userId/transactions", authenticate, async (req, res) => {
 
         const recipientId = recipient.id; 
 
-        console.log("🔍 [DEBUG] recipientId:", recipientId);
+        console.log("  [DEBUG] recipientId:", recipientId);
 
         const { type, amount, remark = "" } = req.body;
         const senderUtorid = req.user.utorid;
 
-        console.log("🔍 [DEBUG] recipientId:", recipientId);
-        console.log("📦 [DEBUG] Request body:", req.body);
-        console.log("👤 [DEBUG] Sender utorid:", senderUtorid);
+        console.log("  [DEBUG] recipientId:", recipientId);
+        console.log("  [DEBUG] Request body:", req.body);
+        console.log("  [DEBUG] Sender utorid:", senderUtorid);
 
         if (isNaN(recipientId)) {
             return res.status(400).json({ error: "Invalid recipient ID" });
@@ -1902,7 +1902,7 @@ app.post("/users/:userId/transactions", authenticate, async (req, res) => {
         }
 
 
-        // ✅ 测试平台格式日志输出
+        //   测试平台格式日志输出
         console.log("In POST /users/:userId/transactions");
         console.log("User role:", req.user.role.toUpperCase());
         console.log("request body that we are working with in /users/:userId/transctions", req.body);
@@ -1962,7 +1962,7 @@ app.post("/users/:userId/transactions", authenticate, async (req, res) => {
         ]);
 
 
-        console.log("✅ [DEBUG] Transfer transaction success:", senderTransaction.id);
+        console.log("  [DEBUG] Transfer transaction success:", senderTransaction.id);
 
         return res.status(201).json({
             id: senderTransaction.id,
@@ -1975,7 +1975,7 @@ app.post("/users/:userId/transactions", authenticate, async (req, res) => {
         });
 
     } catch (err) {
-        console.error("💥 [500] Error processing transfer:", err);
+        console.error("  [500] Error processing transfer:", err);
         return res.status(500).json({ error: err.message || "Internal Server Error" });
     }
 });
@@ -2375,7 +2375,7 @@ app.patch("/events/:eventId", authenticate, async (req, res) => {
         //}
         const eventId = parseInt(req.params.eventId, 10);
         if (eventId === undefined || isNaN(eventId)) {
-            console.log("❌ [400] Invalid event ID:", eventId);
+            console.log("  [400] Invalid event ID:", eventId);
             return res.status(400).json({ error: "Invalid event ID" });
         }
 
@@ -2412,18 +2412,18 @@ app.patch("/events/:eventId", authenticate, async (req, res) => {
 
         // 只有管理员或组织者能更新活动
         if (!isManagerOrHigher && !isOrganizer) {
-            console.log("❌ [403] Access Denied");
+            console.log("  [403] Access Denied");
             return res.status(403).json({ error: "Forbidden: You are not allowed to update this event" });
         }
 
         // 如果活动已开始，某些字段不能修改
         if (new Date(event.startTime) <= now) {
             if (name || description || location || startTime || capacity) {
-                console.log("❌ [400] Cannot update name, description, location, startTime, or capacity after event start");
+                console.log("  [400] Cannot update name, description, location, startTime, or capacity after event start");
                 return res.status(400).json({ error: "Cannot update name, description, location, startTime, or capacity after event start" });
             }
             if (endTime && new Date(event.endTime) <= now) {
-                console.log("❌ [400] Cannot update endTime after event has ended");
+                console.log("  [400] Cannot update endTime after event has ended");
                 return res.status(400).json({ error: "Cannot update endTime after event has ended" });
             }
         }
@@ -2432,18 +2432,18 @@ app.patch("/events/:eventId", authenticate, async (req, res) => {
         if (startTime) {
             const newStartTime = new Date(startTime);
             if (isNaN(newStartTime.getTime())) {
-                console.log("❌ [400] Invalid start time format:", newStartTime);
+                console.log("  [400] Invalid start time format:", newStartTime);
                 return res.status(400).json({ error: "Invalid start time format" });
             }
             if (newStartTime < now) {
-                console.log("❌ [400] Start time cannot be in the past:", newStartTime);
+                console.log("  [400] Start time cannot be in the past:", newStartTime);
                 return res.status(400).json({ error: "Start time cannot be in the past" });
             }
         }
         if (endTime) {
             const newEndTime = new Date(endTime);
             if (isNaN(newEndTime.getTime()) || newEndTime <= new Date(startTime || event.startTime)) {
-                console.log("❌ [400] Invalid end time:", newEndTime);
+                console.log("  [400] Invalid end time:", newEndTime);
                 return res.status(400).json({ error: "End time must be after start time" });
             }
         }
@@ -2451,11 +2451,11 @@ app.patch("/events/:eventId", authenticate, async (req, res) => {
         // 校验 capacity
         if (capacity !== undefined) {
             if (capacity !== null && (!Number.isInteger(capacity) || capacity <= 0)) {
-                console.log("❌ [400] Capacity must be positive:", capacity);
+                console.log("  [400] Capacity must be positive:", capacity);
                 return res.status(400).json({ error: "Capacity must be a positive integer or null" });
             }
             if (capacity !== null && event.guests.length > capacity) {
-                console.log("❌ [400] Cannot reduce capacity below current guest count");
+                console.log("  [400] Cannot reduce capacity below current guest count");
                 return res.status(400).json({ error: "Cannot reduce capacity below current guest count" });
             }
         }
@@ -2469,33 +2469,33 @@ app.patch("/events/:eventId", authenticate, async (req, res) => {
         if (endTime) updateData.endTime = new Date(endTime).toISOString();
         if (capacity !== undefined && capacity !== null) updateData.capacity = capacity;
 
-        console.log("📦 [DEBUG] Incoming request body:", req.body);
+        console.log("  [DEBUG] Incoming request body:", req.body);
 
 
         if (points !== undefined && points !== null) {
             const parsedPoints = Number(points);
             const awarded = event.pointsAwarded ?? 0;
 
-            console.log("====== 🧪 [Case71 Debug Start] ======");
-            console.log("📥 points from request:", points, "| typeof:", typeof points);
-            console.log("🔢 parsedPoints:", parsedPoints, "| typeof:", typeof parsedPoints);
-            console.log("🎯 event.pointsAwarded:", event.pointsAwarded, "| typeof:", typeof event.pointsAwarded);
-            console.log("🧮 Computed awarded (fallback with ?? 0):", awarded);
-            console.log("❓ parsedPoints < awarded ?", parsedPoints < awarded);
-            console.log("====== 🧪 [Case71 Debug End] ======");
+            console.log("======   [Case71 Debug Start] ======");
+            console.log("  points from request:", points, "| typeof:", typeof points);
+            console.log("  parsedPoints:", parsedPoints, "| typeof:", typeof parsedPoints);
+            console.log("  event.pointsAwarded:", event.pointsAwarded, "| typeof:", typeof event.pointsAwarded);
+            console.log("  Computed awarded (fallback with ?? 0):", awarded);
+            console.log("  parsedPoints < awarded ?", parsedPoints < awarded);
+            console.log("======   [Case71 Debug End] ======");
 
             if (!isManagerOrHigher) {
-                console.log("❌ [403] Not manager: cannot update points");
+                console.log("  [403] Not manager: cannot update points");
                 return res.status(403).json({ error: "Forbidden: You cannot update points" });
             }
 
             if (!Number.isInteger(parsedPoints) || parsedPoints < 0) {
-                console.log("❌ [400] Points not a non-negative integer");
+                console.log("  [400] Points not a non-negative integer");
                 return res.status(400).json({ error: "Points must be a non-negative integer" });
             }
 
             if (parsedPoints < awarded) {
-                console.log("❌ [400] UPDATE_EVENT_POINTS_NOT_ENOUGH triggered:", parsedPoints, "<", awarded);
+                console.log("  [400] UPDATE_EVENT_POINTS_NOT_ENOUGH triggered:", parsedPoints, "<", awarded);
                 return res.status(400).json({ error: "UPDATE_EVENT_POINTS_NOT_ENOUGH" });
             }
 
@@ -2506,14 +2506,14 @@ app.patch("/events/:eventId", authenticate, async (req, res) => {
 
 
         if (published !== undefined && published != null) {
-            console.log("🔍 Published value received:", published, "| type:", typeof published);
+            console.log("  Published value received:", published, "| type:", typeof published);
             if (!isManagerOrHigher) {
-                console.log("❌ [403] Forbidden: Only managers or superusers can publish");
+                console.log("  [403] Forbidden: Only managers or superusers can publish");
                 return res.status(403).json({ error: "Forbidden: Only managers or superusers can publish" });
             }
             const publishFlag = published === true || published === "true";
             if (!publishFlag) {
-                console.log("❌ [400] Published can only be set to true", published, "| type:", typeof published);
+                console.log("  [400] Published can only be set to true", published, "| type:", typeof published);
                 return res.status(400).json({ error: "Published can only be set to true" });
             }
             updateData.published = true;
@@ -2549,7 +2549,7 @@ app.delete("/events/:eventId", authenticate, authorize("manager", "superuser"), 
         //const eventId = req.params.eventId;
 
         //if (!eventId || typeof eventId !== "string" || eventId.length < 10) {
-        //  console.log("❌ [400] Invalid event ID:", eventId);
+        //  console.log("  [400] Invalid event ID:", eventId);
         // return res.status(400).json({ error: "Invalid event ID" });
         //}
         const eventId = parseInt(req.params.eventId, 10);
@@ -2569,7 +2569,7 @@ app.delete("/events/:eventId", authenticate, authorize("manager", "superuser"), 
 
         // If event is published, return 400 (not 403)
         if (event.published) {
-            console.log("❌ [400] Cannot delete a published event")
+            console.log("  [400] Cannot delete a published event")
             return res.status(400).json({ error: "Cannot delete a published event" });
         }
 
@@ -2593,18 +2593,18 @@ app.post("/events/:eventId/organizers", authenticate, authorize("manager", "supe
         //const rawEventId = req.params.eventId;
         //const eventId = typeof rawEventId === "number" ? String(rawEventId) : rawEventId;
 
-        //console.log("❌type of eventId", typeof eventId);
+        //console.log(" type of eventId", typeof eventId);
 
         //if (eventId === undefined || typeof eventId !== "string" || eventId.length < 10) {
-        //  console.log("❌ [404] Invalid event ID:", eventId)
+        //  console.log("  [404] Invalid event ID:", eventId)
         //return res.status(404).json({ error: "Invalid event ID" });
         //}
         const eventId = parseInt(req.params.eventId, 10);
-        console.log("❌ type of eventId", typeof eventId);
+        console.log("  type of eventId", typeof eventId);
         console.log("eventId:", eventId);
         if (eventId === undefined || isNaN(eventId)) {
-            console.log("❌type of eventId", typeof eventId);
-            console.log("❌invalid eventId", eventId);
+            console.log(" type of eventId", typeof eventId);
+            console.log(" invalid eventId", eventId);
             return res.status(404).json({ error: "Invalid event ID" });
         }
 
@@ -2613,14 +2613,14 @@ app.post("/events/:eventId/organizers", authenticate, authorize("manager", "supe
 
         // 校验 utorid
         if (typeof utorid !== "string" || utorid.trim() === "") {
-            console.log("❌ [404] Invalid utorid:", utorid)
+            console.log("  [404] Invalid utorid:", utorid)
             return res.status(404).json({ error: "Missing or invalid 'utorid'" });
         }
 
         //const UUID_REGEX = /^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 
         //if (!eventId || !UUID_REGEX.test(eventId)) {
-        //  console.log("❌ [400] Invalid event ID:", eventId);
+        //  console.log("  [400] Invalid event ID:", eventId);
         //return res.status(400).json({ error: "Invalid event ID" });
         //}
 
@@ -2631,7 +2631,7 @@ app.post("/events/:eventId/organizers", authenticate, authorize("manager", "supe
         });
 
         if (!user) {
-            console.log("❌ [404] user not found:", utorid)
+            console.log("  [404] user not found:", utorid)
             return res.status(404).json({ error: "User not found" });
         }
 
@@ -2645,7 +2645,7 @@ app.post("/events/:eventId/organizers", authenticate, authorize("manager", "supe
         });
 
         if (!event) {
-            console.log("❌ Event not found:", eventId);
+            console.log("  Event not found:", eventId);
             return res.status(404).json({ error: "Event not found" });
         }
 
@@ -2655,9 +2655,9 @@ app.post("/events/:eventId/organizers", authenticate, authorize("manager", "supe
             return res.status(410).json({ error: "Event has ended" });
         }
 
-        console.log("👀 Organizer IDs:", event.organizers.map(o => o.id));
-        console.log("👀 Guest IDs:", event.guests.map(g => g.id));
-        console.log("👤 Current user ID:", user.id);
+        console.log("  Organizer IDs:", event.organizers.map(o => o.id));
+        console.log("  Guest IDs:", event.guests.map(g => g.id));
+        console.log("  Current user ID:", user.id);
 
         // 检查用户是否已经是该活动的组织者
         const isAlreadyOrganizer = event.organizers.some(org => org.id === user.id);
@@ -2696,7 +2696,7 @@ app.post("/events/:eventId/organizers", authenticate, authorize("manager", "supe
             }
         });
 
-        console.log("✅ Organizer added:", user.utorid);
+        console.log("  Organizer added:", user.utorid);
         return res.status(201).json(updatedEvent);
 
     } catch (err) {
@@ -2709,22 +2709,22 @@ app.post("/events/:eventId/organizers", authenticate, authorize("manager", "supe
 app.delete("/events/:eventId/organizers/:userId", authenticate, authorize("manager", "superuser"), async (req, res) => {
     try {
         const eventId = parseInt(req.params.eventId, 10);
-        console.log("❌ type of eventId", typeof eventId);
+        console.log("  type of eventId", typeof eventId);
         console.log("eventId:", eventId);
         if (eventId === undefined || isNaN(eventId)) {
-            console.log("❌type of eventId", typeof eventId);
-            console.log("❌invalid eventId", eventId);
+            console.log(" type of eventId", typeof eventId);
+            console.log(" invalid eventId", eventId);
             return res.status(400).json({ error: "Invalid event ID" });
         }
 
         //const eventId = req.params.eventId;
         //if (!eventId || typeof eventId !== "string" || eventId.length < 10) {
-        //  console.log("❌ Invalid event ID:", eventId);
+        //  console.log("  Invalid event ID:", eventId);
         //return error(res, 400, "Invalid event ID");
         //}
         //const userId = req.params.userId;
         //if (!userId || typeof userId !== "string" || userId.length < 10) {
-        //    console.log("❌ Invalid user ID:", userId);
+        //    console.log("  Invalid user ID:", userId);
         //   return error(res, 400, "Invalid user ID");
         //}
         const userId = parseInt(req.params.userId, 10);
@@ -2745,7 +2745,7 @@ app.delete("/events/:eventId/organizers/:userId", authenticate, authorize("manag
         // 确保用户是该活动的组织者
         const isOrganizer = event.organizers.some(org => org.id === userId);
         if (!isOrganizer) {
-            console.log("❌ User is not an organizer of this event");
+            console.log("  User is not an organizer of this event");
             return res.status(400).json({ error: "User is not an organizer of this event" });
         }
 
@@ -2770,8 +2770,8 @@ app.post("/events/:eventId/guests", authenticate, async (req, res) => {
     try {
         const eventId = parseInt(req.params.eventId, 10);
         if (eventId === undefined || isNaN(eventId)) {
-            console.log("❌type of eventId", typeof eventId);
-            console.log("❌invalid eventId", eventId);
+            console.log(" type of eventId", typeof eventId);
+            console.log(" invalid eventId", eventId);
             return res.status(400).json({ error: "Invalid event ID" });
         }
 
@@ -2808,7 +2808,7 @@ app.post("/events/:eventId/guests", authenticate, async (req, res) => {
                 }
             }
         });
-        console.log("🎯 Queried event:", event);
+        console.log("  Queried event:", event);
 
         if (!event) {
             return res.status(404).json({ error: "Event not found" });
@@ -2909,8 +2909,8 @@ app.post("/events/:eventId/guests/me", authenticate, async (req, res) => {
         //}
         const eventId = parseInt(req.params.eventId, 10);
         if (eventId === undefined || isNaN(eventId)) {
-            console.log("❌type of eventId", typeof eventId);
-            console.log("❌invalid eventId", eventId);
+            console.log(" type of eventId", typeof eventId);
+            console.log(" invalid eventId", eventId);
             return res.status(400).json({ error: "Invalid event ID" });
         }
         const userId = req.user.id;
@@ -3013,13 +3013,13 @@ app.post("/events/:eventId/guests/me", authenticate, async (req, res) => {
 
 app.delete("/events/:eventId/guests/me", authenticate, authorize("regular", "cashier", "manager", "superuser"), async (req, res) => {
     try {
-        console.log("🔐 Authenticated user ID:", req.user.id);
-        console.log("🧾 Route called: DELETE /events/" + req.params.eventId + "/guests/me");
+        console.log("  Authenticated user ID:", req.user.id);
+        console.log("  Route called: DELETE /events/" + req.params.eventId + "/guests/me");
 
         const eventId = parseInt(req.params.eventId, 10);
         if (eventId === undefined || isNaN(eventId)) {
-            console.log("❌type of eventId", typeof eventId);
-            console.log("❌invalid eventId", eventId);
+            console.log(" type of eventId", typeof eventId);
+            console.log(" invalid eventId", eventId);
             return res.status(400).json({ error: "Invalid event ID" });
         }
         const userId = req.user.id;  // 获取当前登录用户的 ID
@@ -3085,8 +3085,8 @@ app.delete("/events/:eventId/guests/:userId", authenticate, authorize("manager",
         //}
         const eventId = parseInt(req.params.eventId, 10);
         if (eventId === undefined || isNaN(eventId)) {
-            console.log("❌type of eventId", typeof eventId);
-            console.log("❌invalid eventId", eventId);
+            console.log(" type of eventId", typeof eventId);
+            console.log(" invalid eventId", eventId);
             return res.status(400).json({ error: "Invalid event ID" });
         }
         //const userId = req.params.userId;
@@ -3137,12 +3137,12 @@ app.delete("/events/:eventId/guests/:userId", authenticate, authorize("manager",
 // /events/:eventId/transactions
 app.post("/events/:eventId/transactions", authenticate, async (req, res) => {
     try {
-        console.log("🔐 Authenticated user from token:", req.user);
+        console.log("  Authenticated user from token:", req.user);
 
         const eventId = parseInt(req.params.eventId, 10);
         if (eventId === undefined || isNaN(eventId)) {
-            console.log("❌type of eventId", typeof eventId);
-            console.log("❌invalid eventId", eventId);
+            console.log(" type of eventId", typeof eventId);
+            console.log(" invalid eventId", eventId);
             return res.status(400).json({ error: "Invalid event ID" });
         }
 
@@ -3195,10 +3195,10 @@ app.post("/events/:eventId/transactions", authenticate, async (req, res) => {
             return res.status(404).json({ error: "Event not found" });
         }
 
-        console.log("🧾 event.guests:", JSON.stringify(event.guests, null, 2));
-        console.log("🔍 utorid to award:", utorid);
+        console.log("  event.guests:", JSON.stringify(event.guests, null, 2));
+        console.log("  utorid to award:", utorid);
         event.guests.forEach(g => {
-            console.log("👤 guest:", g.user?.utorid);
+            console.log("  guest:", g.user?.utorid);
         });
 
         const now = new Date();
@@ -3206,8 +3206,8 @@ app.post("/events/:eventId/transactions", authenticate, async (req, res) => {
 
         //if (new Date(event.endTime) > now) {
         //  console.log("[400] Cannot award points before the event ends");
-        //console.log("🕓 Event ends at:", event.endTime);
-        //console.log("🕓 Now is:", now.toISOString());
+        //console.log("  Event ends at:", event.endTime);
+        //console.log("  Now is:", now.toISOString());
         //return res.status(400).json({ error: "Cannot award points before the event ends" });
         //}
 
@@ -3235,7 +3235,7 @@ app.post("/events/:eventId/transactions", authenticate, async (req, res) => {
 
         if (utorid) {
             // 处理单个用户奖励
-            console.log("🔍 Looking for recipient with utorid:", utorid);
+            console.log("  Looking for recipient with utorid:", utorid);
             console.log("👥 Guests list:", event.guests.map(g => g.user?.utorid));
 
             const recipient = event.guests.find(g => g.user && g.user.utorid.toLowerCase() === utorid.toLowerCase());
@@ -3245,7 +3245,7 @@ app.post("/events/:eventId/transactions", authenticate, async (req, res) => {
                 return res.status(400).json({ error: "User is not a guest of this event" });
             }
 
-            console.log("✅ Awarding points to guest:", recipient.user.utorid);
+            console.log("  Awarding points to guest:", recipient.user.utorid);
 
             const transaction = await prisma.transaction.create({
                 data: {
@@ -3452,7 +3452,7 @@ app.get("/promotions", authenticate, async (req, res) => {
         const userRole = req.user.role;
         const userId = req.user.id;  // 获取当前用户 ID
         const now = new Date();
-        console.log("📥 PROMOTIONS API: user =", req.user);
+        console.log("  PROMOTIONS API: user =", req.user);
         // 解析分页参数
         //const pageNumber = Math.max(parseInt(page, 10) || 1, 1);
         //const pageSize = Math.max(parseInt(limit, 10) || 10, 1);
@@ -3511,9 +3511,9 @@ app.get("/promotions", authenticate, async (req, res) => {
                 }
             });
 
-            console.log("🧪 受限用户 (regular/cashier) ID:", userId);
-            console.log("🧪 已使用过促销 ID:", usedPromotionIds);
-            console.log("🧪 返回促销 ID:", promotions.map(p => p.id));
+            console.log("  受限用户 (regular/cashier) ID:", userId);
+            console.log("  已使用过促销 ID:", usedPromotionIds);
+            console.log("  返回促销 ID:", promotions.map(p => p.id));
 
             return res.status(200).json({ count: promotions.length, results: promotions });
         }
@@ -3615,7 +3615,7 @@ app.get("/promotions/:promotionId", authenticate, async (req, res) => {
             return res.status(200).json({
                 id: promotion.id,
                 name: promotion.name,
-                description: promotion.description, // ✅ 加上这一行
+                description: promotion.description, //   加上这一行
                 type: promotion.type,
                 endTime: promotion.endTime,
                 minSpending: promotion.minSpending,

@@ -39,10 +39,10 @@ async function main() {
             },
         });
 
-        console.log("✅ Superuser created/updated successfully:");
+        console.log(" Superuser created/updated successfully:");
         console.log(user);
     } catch (err) {
-        console.error("❌ Error creating superuser:", err);
+        console.error(" Error creating superuser:", err);
         process.exit(1);
     } finally {
         await prisma.$disconnect();

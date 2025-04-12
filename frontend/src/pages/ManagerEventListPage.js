@@ -27,7 +27,7 @@ export default function ManagerEventListPage() {
       ...(type && { type }),
       ...(published !== "" && { published }) 
     });
-    console.log("📡 Request Params:", params.toString());
+    console.log(" Request Params:", params.toString());
     //fetch(`http://localhost:3001/events?${params}`, {
       fetch(`${BACKEND_URL}/events?${params}`, {
       headers: { Authorization: `Bearer ${token}` }
@@ -35,7 +35,7 @@ export default function ManagerEventListPage() {
       .then(res => res.json())
       .then(data => {
         setEvents(data.results || []);
-        console.log("📦 Event Data Returned:", data);
+        console.log(" Event Data Returned:", data);
         setCount(data.count || 0);
       });
   }, [page, order, searchName, type, published]);
@@ -45,7 +45,7 @@ export default function ManagerEventListPage() {
   return (
     <div className="eventlist-container">
       <img src={bowImage} alt="bow" className="eventlist-bow" />
-      <h2 className="eventlist-title">📅 All Events</h2>
+      <h2 className="eventlist-title"> All Events</h2>
 
       <div className="eventlist-filters">
         <input
@@ -55,28 +55,28 @@ export default function ManagerEventListPage() {
         />
 
         <select value={order} onChange={e => setOrder(e.target.value)}>
-          <option value="desc">🕒 Time Descending</option>
-          <option value="asc">🕐 Time Ascending</option>
+          <option value="desc"> Time Descending</option>
+          <option value="asc"> Time Ascending</option>
         </select>
 
         <select value={published} onChange={e => setPublished(e.target.value)}>
           <option value="">All</option>
-          <option value="true">✅ Published</option>
-          <option value="false">❌ Unpublished</option>
+          <option value="true"> Published</option>
+          <option value="false"> Unpublished</option>
         </select>
       </div>
 
       <div className="event-card-list">
         {events.map(event => (
           <div key={event.id} className="event-card">
-            <p><strong>🎀 Name:</strong> {event.name}</p>
-            <p><strong>📍 Location:</strong> {event.location}</p>
-            <p><strong>🕒 Time:</strong> {new Date(event.startTime).toLocaleString()} - {new Date(event.endTime).toLocaleString()}</p>
-            <p><strong>👥 Guests:</strong> {event.numGuests}</p>
-            <p><strong>📣 Status:</strong> {event.published ? '✅ Published' : '❌ Unpublished'}</p>
-            <p><strong>🌟 Points Remaining:</strong> {event.pointsRemain}</p>
-            <p><strong>🎁 Points Awarded:</strong> {event.pointsAwarded}</p>
-            <Link to={`/manager/events/${event.id}`} className="event-link">🔍 View Details</Link>
+            <p><strong> Name:</strong> {event.name}</p>
+            <p><strong> Location:</strong> {event.location}</p>
+            <p><strong> Time:</strong> {new Date(event.startTime).toLocaleString()} - {new Date(event.endTime).toLocaleString()}</p>
+            <p><strong> Guests:</strong> {event.numGuests}</p>
+            <p><strong> Status:</strong> {event.published ? ' Published' : ' Unpublished'}</p>
+            <p><strong> Points Remaining:</strong> {event.pointsRemain}</p>
+            <p><strong> Points Awarded:</strong> {event.pointsAwarded}</p>
+            <Link to={`/manager/events/${event.id}`} className="event-link"> View Details</Link>
           </div>
         ))}
       </div>
@@ -95,7 +95,7 @@ export default function ManagerEventListPage() {
       </div>
 
       <button onClick={() => navigate('/content')} className="back-to-content-btn">
-        🔙 Back to Menu
+         Back to Menu
       </button>
     </div>
   );

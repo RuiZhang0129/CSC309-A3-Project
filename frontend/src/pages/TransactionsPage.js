@@ -52,7 +52,7 @@ export default function TransactionsPage() {
                 utoridMap[id] = json.utorid;
               }
             } catch (err) {
-              console.warn(`⚠️ Failed to get utorid: /users/${id}/utorid`, err);
+              console.warn(` Failed to get utorid: /users/${id}/utorid`, err);
             }
           })
         );
@@ -86,7 +86,7 @@ export default function TransactionsPage() {
   return (
     <div className="tx-container">
       <img src={bowImage} alt="bow" className="tx-bow" />
-      <h2 className="tx-title">📒 My Transactions</h2>
+      <h2 className="tx-title"> My Transactions</h2>
 
       <div className="tx-controls">
         <label>Transaction Type:</label>
@@ -140,7 +140,7 @@ export default function TransactionsPage() {
       </div>
 
       <button onClick={() => navigate('/content')} className="back-to-content-btn">
-        🔙 Back to Menu
+         Back to Menu
       </button>
 
     </div>

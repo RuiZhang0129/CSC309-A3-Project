@@ -42,7 +42,7 @@ export default function ManagerEventParticipantsPage() {
     });
     const data = await res.json();
     if (res.ok) {
-      setMessage("✅ Successfully Added");
+      setMessage(" Successfully Added");
       setGuests([...guests, {
         id: data.guestAdded.id,
         utorid: data.guestAdded.utorid,
@@ -50,7 +50,7 @@ export default function ManagerEventParticipantsPage() {
       }]);
       setUtorid('');
     } else {
-      setMessage(`❌ Failed to Add: ${data.error}`);
+      setMessage(` Failed to Add: ${data.error}`);
     }
   };
 
@@ -64,14 +64,14 @@ export default function ManagerEventParticipantsPage() {
     if (res.ok) {
       setGuests(guests.filter(g => g.id !== userId));
     } else {
-      setMessage("❌ Failed to Remove");
+      setMessage(" Failed to Remove");
     }
   };
 
   return (
     <div className="participant-container">
       <img src={bowImage} alt="bow" className="participant-bow" />
-      <h2 className="participant-title">👥 Event Participant Management</h2>
+      <h2 className="participant-title"> Event Participant Management</h2>
 
       <div className="participant-form">
         <label>Enter UTORid to Add Participant:</label>
@@ -81,23 +81,23 @@ export default function ManagerEventParticipantsPage() {
           className="form-input"
           placeholder="Please enter utorid"
         />
-        <button onClick={handleAddGuest} className="form-button">➕ Add</button>
+        <button onClick={handleAddGuest} className="form-button"> Add</button>
       </div>
 
       {message && <p className="form-message">{message}</p>}
 
-      <h3 className="participant-subtitle">🎀 Current Participant List:</h3>
+      <h3 className="participant-subtitle"> Current Participant List:</h3>
       <ul className="guest-list">
         {guests.map(guest => (
           <li key={guest.id} className="guest-card">
             <span>{guest.utorid} ({guest.name || 'Unnamed'})</span>
-            <button onClick={() => handleRemove(guest.id)} className="remove-button">🗑️ Remove</button>
+            <button onClick={() => handleRemove(guest.id)} className="remove-button"> Remove</button>
           </li>
         ))}
       </ul>
 
       <button onClick={() => navigate('/content')} className="back-to-content-btn">
-        🔙 Back to Menu
+         Back to Menu
       </button>
     </div>
   );

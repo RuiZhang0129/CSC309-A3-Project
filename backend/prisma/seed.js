@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 const prisma = new PrismaClient();
 
 async function main() {
-    console.log("🧹 Clearing old data...");
+    console.log(" Clearing old data...");
 
     // Clear in foreign key dependency order
     await prisma.promotionTransaction.deleteMany();
@@ -14,7 +14,7 @@ async function main() {
     await prisma.promotion.deleteMany();
     await prisma.user.deleteMany();
 
-    console.log("👤 Creating users...");
+    console.log(" Creating users...");
     const hashedPassword = await bcrypt.hash('Password123!', 10);
 
     const roles = [
@@ -39,7 +39,7 @@ async function main() {
         users.push(user);
     }
 
-    console.log("💰 Creating transactions...");
+    console.log(" Creating transactions...");
     const transactionTypes = ['purchase', 'redemption', 'transfer', 'event', 'adjustment'];
 
     for (let i = 0; i < 30; i++) {
@@ -57,7 +57,7 @@ async function main() {
         });
     }
 
-    console.log("🎫 Creating events...");
+    console.log(" Creating events...");
     for (let i = 0; i < 5; i++) {
         await prisma.event.create({
             data: {
@@ -74,7 +74,7 @@ async function main() {
         });
     }
 
-    console.log("🎁 Creating promotions...");
+    console.log(" Creating promotions...");
     for (let i = 0; i < 5; i++) {
         await prisma.promotion.create({
             data: {
@@ -90,12 +90,12 @@ async function main() {
         });
     }
 
-    console.log("✅ Seed data imported successfully!");
+    console.log(" Seed data imported successfully!");
 }
 
 main()
     .catch((e) => {
-        console.error("❌ Error occurred:", e);
+        console.error(" Error occurred:", e);
         process.exit(1);
     })
     .finally(async () => {

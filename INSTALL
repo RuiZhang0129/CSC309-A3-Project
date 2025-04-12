@@ -6,6 +6,26 @@
 # 2. How to configure various servers (e.g., Nginx, Apache, etc)
 
 
-backend node index.js 3001frontend npm start
+backend setup
+cd backend
+npm install
+
+frontend setup
+cd ../frontend
+npm install
+npm start
+
+prisma setup
+npx prisma generate
+npx prisma migrate dev --name init
+npm run seed   # Seed the database with test dat
+
+detail of data
+npx prisma studio
+
+run "node index.js 3001" for backend
+run "npm start" for frontend
+
+
 
 npm install dotenv

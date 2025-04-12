@@ -37,7 +37,7 @@ export default function MyQRCodePage() {
   return (
     <div className="qr-container">
       <img src={bowImage} alt="bow" className="qr-bow" />
-      <h2 className="qr-title">🎀 My QR Code 🎀</h2>
+      <h2 className="qr-title"> My QR Code </h2>
 
       {loading && <p className="qr-loading">Loading...</p>}
       {error && <p className="qr-error">{error}</p>}
@@ -50,7 +50,7 @@ export default function MyQRCodePage() {
       )}
 
       <button onClick={() => navigate('/content')} className="back-to-content-btn">
-        🔙 Back to Menu
+         Back to Menu
       </button>
     </div>
   );

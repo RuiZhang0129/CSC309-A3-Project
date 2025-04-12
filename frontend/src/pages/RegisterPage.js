@@ -69,7 +69,7 @@ export default function RegisterPage() {
   return (
     <div className="register-container">
       <img src={bowImage} alt="bow" className="corner-bow" />
-      <h2 className="register-title">🎀 User Registration 🎀</h2>
+      <h2 className="register-title"> User Registration </h2>
       <form onSubmit={handleSubmit} className="register-form">
         <input
           placeholder="UTORid"
@@ -114,8 +114,8 @@ export default function RegisterPage() {
         {error && <p className="register-error">{error}</p>}
 
         <div className="extra-buttons">
-          <button type="button" onClick={() => navigate('/')} className="back-btn">🏠 Back to Home</button>
-          <button type="button" onClick={() => navigate('/login')} className="back-btn">🔐 Go to Login</button>
+          <button type="button" onClick={() => navigate('/')} className="back-btn"> Back to Home</button>
+          <button type="button" onClick={() => navigate('/login')} className="back-btn"> Go to Login</button>
         </div>
       </form>
     </div>
