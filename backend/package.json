@@ -5,10 +5,9 @@
   "main": "index.js",
   "scripts": {
     "createsuperuser": "node prisma/createsu.js",
-    "seed": "node prisma/seed.js",
+    "seed": "prisma db seed",
     "clean": "rm -rf prisma/dev.db* node_modules package-lock.json prisma/migrations/",
-    "start": "node index.js",
-    "build": "prisma generate && prisma migrate deploy"
+    "start": "prisma generate && prisma migrate deploy && prisma db seed && node index.js"
   },
   "prisma": {
     "seed": "node prisma/seed.js"
